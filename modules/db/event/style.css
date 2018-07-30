@@ -1,0 +1,57 @@
+#cwc_event_list i
+{
+	cursor: pointer;
+}
+
+#cwc_event_list
+{
+	font-size:0.75rem;
+}
+
+#cwc_event_prompt
+{
+	position: fixed;
+	bottom:0;
+	width:100%;
+	left:0;
+	display:none;
+	z-index: 1000;
+}
+
+#cwc_event_list td {
+}
+
+#cwc_event_list tr.ui-sortable-helper, #cwc_event_list tr.ui-sortable-helper td
+{
+	background-color: #fff !important;
+}
+
+#cwc_event_list tr.ui-sortable-helper i.text-primary, #cwc_event_list tr.ui-sortable-helper i.text-danger {
+	display:none;
+}
+
+
+#cwc_attribute_loading
+{
+	
+}
+
+#cwc_event_card
+{
+	max-height: 200px;
+	overflow-y:auto;	
+}
+
+.cwc_sequence_block_parent
+{
+	height:auto;
+}
+
+.cwc_sequence_block
+{
+	cursor: move;
+	height:10px;
+	line-height: 1.1;
+	font-size:0.8em;
+}
+

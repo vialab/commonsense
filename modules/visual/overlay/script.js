@@ -13,148 +13,438 @@ callback.visualOverlay = function(){
 	}
 
 
-	var path = "http://xai-data.ckprototype.com/media/"+hash+"/"+$("div[module='visual/overlay']").attr("meta");
+
+	// var path = "http://xai-data.ckprototype.com/media/"+hash+"/"+$("div[module='visual/overlay']").attr("meta");
 
 
-	$.ajax({
-		url: path,
-		filetype: "text",
-		success: function(data){
+	// $.ajax({
+	// 	url: path,
+	// 	filetype: "text",
+	// 	success: function(data){
 
 
-			if (!Array.isArray(data)) {
+	// 		if (!Array.isArray(data)) {
 
-		        data = JSON.parse(data);
+	// 	        data = JSON.parse(data);
 
-			}
-
-
-	        console.log(data);
+	// 		}
 
 
-			if ($("#visual-overlay-group").length > 0) {
+	//         console.log(data);
 
 
-
-				// data = JSON.parse(data);
-
-				// console.log(data);
-
-
-				var total = data.length - 1;
-
-				var timeline = {};
+	// 		if ($("#visual-bbox-timeline").length > 0) {
 
 
 
-				$.each(data, function(index,item){
+	// 			// data = JSON.parse(data);
+
+	// 			// console.log(data);
 
 
-					if (item.tracked_people != undefined) {
+	// 			var total = data.length - 1;
 
-						var percentage = index / total;
-
-
-						$.each(item.tracked_people, function(j, person){
-
-							if (person._fmxnet_id != undefined) {
-
-
-								if (timeline[person._fmxnet_id] === undefined) {
-
-									timeline[person._fmxnet_id] = {};
-
-								}
-
-								timeline[person._fmxnet_id][index] = person;
+	// 			var timeline = {};
 
 
 
-							} else if (person._utface_id != undefined) {
+	// 			$.each(data, function(index,item){
+
+
+	// 				if (item.tracked_people != undefined) {
+
+	// 					var percentage = index / total;
+
+
+	// 					$.each(item.tracked_people, function(j, person){
+
+	// 						if (person._fmxnet_id != undefined) {
+
+
+	// 							if (timeline[person._fmxnet_id] === undefined) {
+
+	// 								timeline[person._fmxnet_id] = {};
+
+	// 							}
+
+	// 							timeline[person._fmxnet_id][index] = person;
 
 
 
-								if (timeline[person._utface_id] === undefined) {
-
-									timeline[person._utface_id] = {};
-
-								}
-
-								timeline[person._utface_id][index] = person;
+	// 						} else if (person._utface_id != undefined) {
 
 
-							}
+
+	// 							if (timeline[person._utface_id] === undefined) {
+
+	// 								timeline[person._utface_id] = {};
+
+	// 							}
+
+	// 							timeline[person._utface_id][index] = person;
 
 
-						});
+	// 						}
+
+
+	// 					});
+
+	// 				}
+
+
+	// 			});
+
+	// 			$("#visual-bbox-timeline").empty();
+
+
+	// 			$.each(timeline, function(id, list){
+
+
+
+	// 					$("#visual-bbox-timeline").append('<div class="position-relative list-group-item list-group-item-action border-left-0 border-right-0 position-relative" utf="'+id+'"><h6 class="position-absolute" style="left:5px; top:50%; margin-top:-0.5em; font-size:0.5rem">'+id+'</h6><div class="position-relative bg-light" style="height:10px;"><svg class="position-absolute w-100 h-100 border"></svg></div></div>');
+
+	// 					var box = $("#visual-bbox-timeline div[utf='"+id+"'] svg")[0];
+
+	// 					$.each(list, function(frame, item){
+
+
+	// 						var percentage = frame / total * 100;
+
+	// 						var shape = visualOverlaySVG("circle", { cx: percentage+"%", cy: 5, r:1, fill: "black", class: "position-absolute frame", frame: frame, utf: id, json: JSON.stringify(item) });
+
+	// 						box.appendChild(shape);
+
+
+	// 					});
+
+
+	// 					var shape = visualOverlaySVG("circle", { cx: "0%", cy: 5, r:1, fill: "red", class: "position-absolute visual-overlay-cursor" });
+
+	// 					box.appendChild(shape);
+
+
+
+
+
+
+	// 			});
+
+	// 			$("div[module='visual/overlay'] .metadata").html(data);
+
+	// 			var element = $("div[module='visual/overlay']");
+	// 			var height = element.find(".content").outerHeight();
+	// 			element.css("height", height+"px");			
+
+
+	// 			$("#visual-video-pane").attr("total", total);
+
+	// 			animate.visualOverlay = function(){
+
+	// 				visualOverlay();
+
+	// 			}
+
+	// 			visualOverlay();
+
+
+	// 			$("#relational-summary-alert").hide();
+
+	// 		}
+
+
+	// 	} 
+	// })
+
+}
+
+
+function visualBboxInsertMakeSvg(tag, attrs, text) {
+    var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) {
+        el.setAttribute(k, attrs[k]);
+    }
+
+
+    if (text != undefined) {
+
+	    el.innerHTML = text;
+
+    }
+
+
+    return el;
+}
+
+
+
+
+poll.visualOverlay = function(){
+
+	if ($("#visual-bbox-timeline").attr("loading") == undefined) {
+
+		var msg = "hello world";
+
+		$("#visual-bbox-timeline").attr("loading", "true");
+
+		var templateOriginal = $("#visual-bbox-timeline-template");
+
+		$.ajax({
+			url: "/modules/visual/overlay/list.php",
+			data: {
+				session: session_id
+			},
+			success: function(data){
+
+				var list = JSON.parse(data);
+
+
+
+				// $("#visual-bbox-timeline div.alert").hide();
+
+				console.log(list);
+
+				$.each(list, function(i,o){
+
+					var template = templateOriginal.clone().removeAttr("id").show();
+
+					if ($("#visual-bbox-timeline div[data-db='"+i+"']").length == 0) {
+
+
+						if (o.data.ACTOR_NAME == null) {
+
+							o.data.ACTOR_NAME = "";
+
+						}
+
+						console.log(o);
+
+						var text = "";
+
+						template.attr("data-db", i);
+						template.attr("data-name", o.data.ACTOR_NAME);
+						template.find("h6").text(o.data.ACTOR_NAME);
+
+
+
+
+
+
+
+						$("#visual-bbox-timeline").append(template);
+
+						// $("#visual-bbox-timeline").append(template);
+
 
 					}
 
 
-				});
 
-				$("#visual-overlay-group").empty();
+					$.each(o.overlays, function(j,p){
 
+						console.log(p);
 
-				$.each(timeline, function(id, list){
+						// if ($("#visual-bbox-timeline div[data-db='"+i+"'] circle[db='"+j+"']").length == 0 && j != "") {
 
+						var element = $("div.visual-bbox-bar[data-db='"+i+"'] svg");
 
+						var bar = element[0];
+						var position = element.outerWidth() * (p.TIME / 100);
 
-						$("#visual-overlay-group").append('<div class="position-relative list-group-item list-group-item-action border-left-0 border-right-0 position-relative" utf="'+id+'"><h6 class="position-absolute" style="left:5px; top:50%; margin-top:-0.5em; font-size:0.5rem">'+id+'</h6><div class="position-relative bg-light" style="height:10px;"><svg class="position-absolute w-100 h-100 border"></svg></div></div>');
+						console.log(position);
 
-						var box = $("#visual-overlay-group div[utf='"+id+"'] svg")[0];
-
-						$.each(list, function(frame, item){
-
-
-							var percentage = frame / total * 100;
-
-							var shape = visualOverlaySVG("circle", { cx: percentage+"%", cy: 5, r:1, fill: "black", class: "position-absolute frame", frame: frame, utf: id, json: JSON.stringify(item) });
-
-							box.appendChild(shape);
-
-
-						});
-
-
-						var shape = visualOverlaySVG("circle", { cx: "0%", cy: 5, r:1, fill: "red", class: "position-absolute visual-overlay-cursor" });
-
-						box.appendChild(shape);
+						var x = p.X;
+						var y = p.Y;
+						var w = p.W;
+						var h = p.H;
 
 
 
+						var path = visualBboxInsertMakeSvg('circle', {cx: position, cy: 5, r: 2, fill: "black", db: j, time: p.TIME, x: x, y: y, w: w, h:h});
+						bar.appendChild(path);
 
+
+						// }
+
+
+					});
 
 
 				});
 
-				$("div[module='visual/overlay'] .metadata").html(data);
-
-				var element = $("div[module='visual/overlay']");
-				var height = element.find(".content").outerHeight();
-				element.css("height", height+"px");			
+				$("#visual-bbox-timeline").removeAttr("loading");
 
 
-				$("#visual-video-pane").attr("total", total);
+				return false;
 
-				animate.visualOverlay = function(){
+				$("#cwc_actor_list tr[data-db]").each(function(){
 
-					visualOverlay();
+					var id = $(this).data("db");
+
+
+
+					if (cwcList[id] == undefined) {
+
+						$(this).remove();
+
+					} else {
+
+
+						if (cwcList[id].ACTOR_NAME != $(this).find("td.name").text()) {
+
+							$(this).find("td.name").text(cwcList[id].ACTOR_NAME);
+
+						}
+
+					}
+
+				});
+
+				$.each(cwcList, function(i,o){
+
+
+					if ($("#cwc_actor_list tr[data-db='"+o.ACTOR_ID+"']").length == 0) {
+
+						// console.log(o.RX);
+						// console.log(o.RY);
+
+						if (o.ACTOR_NAME == null) {
+
+							o.ACTOR_NAME = "";
+
+						}
+
+						$("#cwc_actor_list").append('<tr data-asset="'+o.ASSET_ID+'" data-type="'+o.ASSET_TYPE_ID+'" data-db="'+o.ACTOR_ID+'"><th scope="row" class="align-middle">'+o.ACTOR_ID+'</th><td class="type align-middle">'+o.ASSET_NAME+'</td><td class="name  align-middle">'+o.ACTOR_NAME+'</td><td class=" align-middle"><input readonly class="form-control form-control-sm" style="width:80px" type="number" min="0" max="359.9" step="0.1" value="'+o.RX+'"></td><td class=" align-middle"><input readonly class="form-control form-control-sm" style="width:80px" type="number" min="0" max="359.9" step="0.1" value="'+o.RY+'"></td><td class="text-right align-middle"><i class="fa fa-tag text-success cwc_asset_attribute"></i> <i class="fa fa-pencil-alt text-primary cwc_asset_rename"></i> <i class="fa fa-times text-danger cwc_asset_remove"></i></td></tr>');
+
+					}
+
+				});
+
+
+				if ($("#cwc_asset_mode a.active").length == 0) {
+
+					$("#cwc_asset_mode a:first").click();
+
+				} else {
+
+					var type = $("#cwc_asset_mode a.active").data("type");
+
+					$("#cwc_actor_list tr[data-type='"+type+"']").show();
+					$("#cwc_actor_list tr[data-type!='"+type+"']").hide();
+
 
 				}
 
-				visualOverlay();
+
+				$("#cwc_actor_list").removeAttr("loading");
+				cwcAssetResize();
 
 
-				$("#relational-summary-alert").hide();
+
 
 			}
+		});
 
-
-		} 
-	})
+	}
 
 }
+
+
+$(document).on("click", ".visual-bbox-insert", function(){
+
+
+	var value = $("#visual-video-timeline").val();
+	var element = $(this);
+
+	// if ($(this).closest("div.visual-bbox-bar").find("circle[percentage='"+value+"']").length > 0) {
+
+	// 	return false;
+
+	// }
+
+	var value = parseFloat($("#visual-video-timeline").val());
+
+	// var percentage = value/100;
+
+	var db = element.closest(".visual-bbox-bar").attr("data-db");
+
+	var obj = {};
+	obj.db = db;
+	obj.time = value;
+
+	console.log(obj);
+
+	$.ajax({
+		url: "/modules/visual/overlay/add.php",
+		type: "POST",
+		data: obj,		
+		success: function(data){
+
+			$.each(poll, function(i,o){
+
+				o();
+
+			});
+			
+
+		}
+	});
+
+
+	// var bar = $(this).closest("div.visual-bbox-bar").find("svg")[0];
+
+	// var position = $(this).closest("div.visual-bbox-bar").find("svg").outerWidth() * percentage;
+
+	// var index = $(this).closest("div.visual-bbox-bar").index();
+
+
+	// if ($(".visual-bbox-canvas-box-placeholder[index='"+index+"']").length > 0 && parseInt($(".visual-bbox-canvas-box-placeholder[index='"+index+"']").attr("x")) > 0) {
+
+	// 	var element = $(".visual-bbox-canvas-box-placeholder[index='"+index+"']");
+
+	// 	var x = parseInt(element.attr("x"));
+	// 	var y = parseInt(element.attr("y"));
+	// 	var w = parseInt(element.attr("width"));
+	// 	var h = parseInt(element.attr("height"));
+
+	// } else {
+
+	// 	var x = $("#visual-video-canvas").outerWidth() / 2 - 50;
+	// 	var y = $("#visual-video-canvas").outerHeight() / 2 - 50;
+	// 	var w = 100;
+	// 	var h = 100;
+
+	// }
+
+	// var path = visualBboxInsertMakeSvg('circle', {cx: position, cy: 5, r: 2, fill: "black", percentage: value, x: x, y: y, w: w, h:h});
+	// bar.appendChild(path);
+
+
+	// // var canvas = $("#visual-video-canvas")[0];
+
+	// // var path = visualBboxInsertMakeSvg('rect', {x: 0, y: 0, w: 50, h:50, fill: "transparent", stroke: 'white', "stroke-width": 2});
+
+	// // canvas.appendChild(path);
+
+
+ //    var $wrapper = $(this).closest("div.visual-bbox-bar").find("svg"),
+ //        $articles = $wrapper.find("circle");
+ //    [].sort.call($articles, function(a,b) {
+ //        return +parseFloat($(a).attr('percentage')) - +parseFloat($(b).attr('percentage'));
+ //    });
+
+ //    $articles.each(function(){
+ //        $wrapper.append(this);
+ //    });
+
+
+	// visualBboxSave();
+
+	// visualBboxDisplay();
+
+
+
+
+});
 
 
 function visualOverlaySVG(tag, attrs, text) {
@@ -216,7 +506,7 @@ function visualOverlay(){
 	var size = 12;
 	var offset = 10;
 
-	$("#visual-overlay-group div.list-group-item-action.list-group-item-danger").removeClass("list-group-item-danger");
+	$("#visual-bbox-timeline div.list-group-item-action.list-group-item-danger").removeClass("list-group-item-danger");
 
 	var tester = {};
 
@@ -231,11 +521,11 @@ function visualOverlay(){
 
 	});
 
-	$("#visual-overlay-group circle[frame='"+frame+"']").each(function(){
+	$("#visual-bbox-timeline circle[frame='"+frame+"']").each(function(){
 
 		var utf = parseInt($(this).attr("utf"));
 
-		$("#visual-overlay-group div.list-group-item-action[utf='"+utf+"']").addClass("list-group-item-danger");
+		$("#visual-bbox-timeline div.list-group-item-action[utf='"+utf+"']").addClass("list-group-item-danger");
 
 
 		var json = $(this).attr("json");

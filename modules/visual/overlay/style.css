@@ -8,3 +8,32 @@
 {
 	fill: rgba(245, 198, 203, 0.75);
 }
+
+div.visual-bbox-bar circle
+{
+	cursor: pointer;
+}
+
+div.visual-bbox-bar circle.current
+{
+	fill: red;
+	r: 3;
+}
+
+div.visual-bbox-bar circle.hidden
+{
+	fill: #999;
+	display: none !important
+}
+
+polygon.visual-bbox-canvas-box-resize:hover, rect.visual-bbox-canvas-box-move:hover
+{
+	cursor: pointer !important;
+}
+
+div.visual-bbox-bar:last-child
+{
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+	border-bottom: 0 !important;
+}
