@@ -31,6 +31,7 @@ If there are any other issues, you should be able to self-diagnose by investigat
 
  1. Load the Apache server (ex. `/var/www`) with the latest copy of the interface
  2. Upload the provided table schema and accompanying sample data to MySQL database
+ 3. Update `/library/db.php` with correct MySQL credentials
  3. Launch the browser and access the root directory
 
 ## Sample Data
