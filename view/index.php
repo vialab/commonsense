@@ -142,7 +142,7 @@
 
 
 				</small>
-				<small class="d-block mt-0" id="header-session"><span>Permalink:</span> <a target="_blank" href="http://commonsense.ckprototype.com/view/?code=<?= $code ?>&session=<?= $session_id ?>&page=<?= $page ?>">Go</a></small>
+				<small class="d-block mt-0" id="header-session"><span>Permalink:</span> <a target="_blank" href="/view/?code=<?= $code ?>&session=<?= $session_id ?>&page=<?= $page ?>">Go</a></small>
 
 				<div class='row mt-3'>
 					<div class='col-6 text-left' id='nav'>
