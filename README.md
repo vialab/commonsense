@@ -1,8 +1,8 @@
-# commonsense
-Common Sense web interface, created and maintained by Chris Kim (chris.kim@uoit.ca)
+# Modular
+Modular web interface modules, created and maintained by Chris Kim (chris.kim@uoit.ca)
 
 ## License
-Under further notice, this work is currently under exclusive copyright of UOIT and Vialab. You may download, copy, and modify for personal use, but cannot distribute original or derivative work without permission. UOIT is currently in the process of choosing a license, and this section will be updated upon reaching internal agreement.
+IMPORTANT: Modular is under an Academic and Non-Commercial Research Use License. Before proceeding, please be aware of the license. If you do not qualify to use Modular, you can ask to obtain permission as detailed in the license.
 
 ## Live Example
 The most up-to-date version of the interface is available at http://commonsense.ckprototype.com/.
@@ -30,20 +30,14 @@ If there are any other issues, you should be able to self-diagnose by investigat
 ## Instructions
 
  1. Load the Apache server (ex. `/var/www`) with the latest copy of the interface
- 2. Upload the provided table schema and accompanying sample data (`preset.sql`) to MySQL database
+ 2. Upload the provided table schema and accompanying sample data (`schema.sql`) to MySQL database
  3. Update `/library/db.php` with correct MySQL credentials
  3. Launch the browser and access the root directory
 
 ## Sample Data
 
-The interface contains the following starter layout data:
+The interface contains a simple "hello world" page that illustrates the placement of individual modules.
 
- - **DEMOPLAIN** (Demo - Plain Graph)
- - **DEMOTEXT** (Demo - Text Processing)
- - **DEMOMGVIDEO** (Demo - MovieGraph + Video)
- - **DEMOVIDEO** (Demo - Video)
-
-The latter two layouts also feature a sample MP4 video.
 
 ## Contact Information
 Found any bugs? Please report any issues via Github's **Issues** feature. For private inquiry, please reach out to chris.kim@uoit.ca or chris.kim@sri.com (exclusive to SRI personnel).
