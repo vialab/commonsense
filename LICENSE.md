@@ -40,7 +40,7 @@ Requests for use of the Software for commercial purposes, please
 contact:
 
 Dr. Christopher Collins\
-UOIT, Faculty of Science\ 
+UOIT, Faculty of Science\
 2000 Simcoe Street N\
 Oshawa, ON L1H 7K4\
 Canada\
