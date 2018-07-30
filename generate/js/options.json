@@ -1,0 +1,72 @@
+{
+	"info": {
+		"headline": {
+			"meta": true,
+			"markdown": true
+		},
+		"text": {
+			"meta": true,
+			"markdown": true
+		},
+		"input": {
+			"meta": false,
+			"markdown": false
+		},
+		"embed": {
+			"meta": true,
+			"markdown": false
+		},
+		"attention": {
+			"meta": true,
+			"markdown": false
+		}		
+	},	
+	"entity": {
+		"list": {
+			"meta": false,
+			"markdown": false
+		}
+	},
+	"visual": {
+		"video": {
+			"meta": true,
+			"markdown": false
+		},
+		"overlay": {
+			"meta": true,
+			"markdown": false
+		},		
+		"bbox": {
+			"meta": false,
+			"markdown": false
+		}
+	},
+	"textual": {
+		"tag": {
+			"meta": true,
+			"markdown": false
+		},
+		"freetext": {
+			"meta": false,
+			"markdown": false
+		},
+		"bin": {
+			"meta": false,
+			"markdown": false
+		}
+	},
+	"relational": {
+		"summary": {
+			"meta": true,
+			"markdown": false
+		},
+		"visual": {
+			"meta": false,
+			"markdown": false
+		},
+		"textual": {
+			"meta": false,
+			"markdown": false
+		}		
+	}
+}

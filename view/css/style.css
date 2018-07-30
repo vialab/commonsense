@@ -1,0 +1,27 @@
+body
+{
+	overscroll-behavior: none;	
+	overflow-y: scroll;
+}
+
+div.placeholder
+{
+	height:150px;
+	background-color: #eee;
+}
+
+div.module
+{
+	/*transition: all 0.5s ease;*/
+}
+
+text
+{
+	pointer-events: none;
+	user-select: none;
+}
+
+#last_saved
+{
+	display:none;
+}

@@ -1,0 +1,95 @@
+#cwc_graph_svg_container
+{
+	padding-bottom: 100%;
+	position: relative;
+}
+
+#cwc_graph_svg
+{
+	height:100%;
+	position: absolute;
+	top:0;
+	width:100%;
+	left:0;
+	z-index: 2;
+}
+
+#cwc_graph_backdrop
+{
+	height:100%;
+	position: absolute;
+	top:0;
+	width:100%;
+	left:0;
+	z-index: 1;
+}
+
+#cwc_graph_backdrop line
+{
+	stroke: #eee;
+}
+
+#cwc_graph_svg circle[type='CHARACTERS']
+{
+	/*fill: lightgreen;*/
+}
+
+#cwc_graph_svg circle[type='PROPS']
+{
+	/*fill: pink;*/
+}
+
+#cwc_graph_svg circle
+{
+	fill: #eee;
+}
+
+
+#cwc_graph_svg circle:hover, #cwc_graph_svg circle.active
+{
+	fill: red;
+}
+
+#cwc_graph_svg circle
+{
+	cursor: pointer;
+	/*r: 15;*/
+}
+
+#cwc_graph_svg text.label
+{
+    transform: translateX(20px) translateY(0px);
+    font-size:0.8rem;
+	/*cursor: pointer;*/
+	/*pointer-events: auto;*/
+	alignment-baseline: middle;
+
+}
+
+#cwc_graph_svg text.icon
+{
+	font-size:1em;
+	text-anchor: middle;
+	alignment-baseline: middle;
+}
+
+
+#cwc_graph_svg text.attr
+{
+    transform: translateX(20px) translateY(9px);
+    font-size:0.6rem;
+	alignment-baseline: middle;
+}
+
+
+/*
+#cwc_graph_svg text:hover
+{
+	fill: red;	
+}
+
+*/
+
+#cwc_graph_svg line
+{
+}

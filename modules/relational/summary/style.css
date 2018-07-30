@@ -1,0 +1,21 @@
+
+
+#relational-summary-canvas .active
+{
+	fill:red;
+}
+
+#relational-summary-canvas-container
+{
+	transition: all 0.5s ease;
+}
+
+#relational-summary-canvas *
+{
+	cursor: pointer;
+}
+
+#relational-summary-edit-box
+{
+	display:none;
+}

@@ -1,0 +1,79 @@
+div.column
+{
+	transition: all 0.3s ease;
+}
+
+div.column.hide
+{
+	transform: scale(0.5);
+}
+
+div.column:first-child button.column-move-left
+{
+	display:none;
+}
+
+div.column:last-child button.column-move-right
+{
+	display:none;
+}
+
+div.module
+{
+	cursor: pointer;
+}
+
+.hidden
+{
+	display:none;
+}
+
+div.column div.dropdown button
+{
+	display:none;
+}
+
+div.column:hover div.dropdown button
+{
+	display: block;
+}
+
+
+div.page:first-child button.page-move-up
+{
+	display:none;
+}
+
+div.page:last-child button.page-move-down
+{
+	display:none;
+}
+
+.input-group-append
+{
+	display:none;
+}
+
+div.input-group:hover .input-group-append
+{
+	display:flex !important;
+}
+
+
+.ui-state-highlight
+{
+	height: 3rem;
+	background-color:pink;
+}
+
+
+.ui-sortable-helper
+{
+	max-width:500px;
+}
+
+div.dropdown-menu
+{
+	max-height:300px;
+	overflow-y: scroll;
+}

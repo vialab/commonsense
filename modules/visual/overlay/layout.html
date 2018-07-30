@@ -1,0 +1,51 @@
+<div class="card">
+<!-- 	<div class="card-header bg-dark text-white">
+		<i class="fa fa-question-circle"></i> Detected Objects
+	</div> -->
+
+	<div class="alert alert-info text-center mb" start="" end="" index="" id="visual-overlay-alert">
+		<strong>Double click</strong> on the bounding box to create a node.
+		<br>
+		Want to select a <strong>time range</strong> instead? Click the box, <strong>move the time cursor</strong>, and click on the box again.
+	</div>
+
+	<div class="card-body" id="visual-overlay-fields" style="display:none;">
+				
+		<div class="input-group input-group-sm mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text bg-dark text-white" id="inputGroup-sizing-sm">Entity</span>
+		  </div>
+		  <input type="text" class="form-control animated" disabled aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="visual-overlay-entity">
+
+		  <div class="input-group-prepend">
+		    <span class="input-group-text bg-dark text-white " id="inputGroup-sizing-sm">Start (%)</span>
+		  </div>
+		  <input type="text" class="form-control animated" disabled aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="visual-overlay-start">
+
+		  <div class="input-group-prepend">
+		    <span class="input-group-text bg-dark text-white" id="inputGroup-sizing-sm">End (%)</span>
+		  </div>
+		  <input type="text" class="form-control animated" disabled aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="visual-overlay-end">
+
+
+		  <div class="input-group-append">
+		    <button class="btn btn-danger" id="visual-overlay-submit" type="button"><i class="fa fa-arrow-right"></i> New Node</button>
+		    <button class="btn btn-secondary" type="button" id="visual-overlay-clear"><i class="fa fa-times"></i></button>
+		  </div>
+
+		</div>
+
+
+	</div>
+
+	<div class="list-group" id="visual-overlay-group">
+
+		<div class="alert alert-info text-center m-0">
+
+			Loading ...
+
+		</div>
+
+	</div>	
+
+</div>

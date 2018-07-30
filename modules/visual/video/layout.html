@@ -1,0 +1,50 @@
+
+<div class="card">
+  <div class="card-header bg-dark text-white">
+    <i class="fa fa-play"></i> Video
+  </div>
+  <div class="position-relative">
+
+
+		<video id="visual-video-pane" class="d-block" preload="" onloadeddata="visualVideoLoaded()" width="100%">
+			<source src="">
+		</video>
+
+		<div class="position-absolute w-100 h-100" style="left:0; top:0;">
+
+			<svg class="position-absolute w-100 h-100" style="left:0; top:0; background-color: rgba(0, 0, 0, 0.3);" id="visual-video-canvas">
+			</svg>
+
+
+
+
+
+		</div>
+
+  </div>  
+
+  <div class="card-body">
+
+  	<input type="range" id="visual-video-timeline" min="0" max="100" value="0" step="0.1" class="w-100">
+
+
+    <div class="mt-3 text-right">
+
+      <button class="btn btn-primary btn-sm" id="visual-video-play"><i class="fa fa-play"></i></button>
+      <button class="btn btn-primary btn-sm" id="visual-video-pause"><i class="fa fa-pause"></i></button>
+
+
+    </div>
+
+  </div>
+
+
+
+<!-- 
+  <div class="card-body" id="visual-video-toggle">
+
+
+
+  </div> -->
+
+</div>

@@ -1,0 +1,84 @@
+{
+	"info": {
+		"headline": {
+			"meta": true,
+			"markdown": true
+		},
+		"text": {
+			"meta": true,
+			"markdown": true
+		},
+		"input": {
+			"meta": false,
+			"markdown": false
+		},
+		"embed": {
+			"meta": true,
+			"markdown": false
+		},
+		"attention": {
+			"meta": true,
+			"markdown": false
+		}	
+	},	
+	"visual": {
+		"video": {
+			"meta": true,
+			"markdown": false
+		},
+		"overlay": {
+			"meta": true,
+			"markdown": false
+		}		
+	},	
+	"cwc": {
+		"asset": {
+			"meta": false,
+			"markdown": false
+		},	
+		"attribute": {
+			"meta": false,
+			"markdown": false
+		},
+		"attachment": {
+			"meta": false,
+			"markdown": false
+		},				
+		"conversation": {
+			"meta": false,
+			"markdown": false
+		},		
+		"graph": {
+			"meta": false,
+			"markdown": false
+		},
+		"interaction": {
+			"meta": false,
+			"markdown": false
+		},
+		"event": {
+			"meta": false,
+			"markdown": false
+		},
+		"relationship": {
+			"meta": false,
+			"markdown": false
+		},					
+		"toggle": {
+			"meta": true,
+			"markdown": false
+		},
+		"sequence": {
+			"meta": true,
+			"markdown": false
+		},
+		"position": {
+			"meta": true,
+			"markdown": false
+		},
+		"upload": {
+			"meta": false,
+			"markdown": false
+		}						
+	}
+}
