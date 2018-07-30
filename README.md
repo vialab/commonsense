@@ -2,7 +2,7 @@
 Modular web interface modules, created and maintained by Chris Kim (chris.kim@uoit.ca)
 
 ## License
-IMPORTANT: Modular is under an Academic and Non-Commercial Research Use License. Before proceeding, please be aware of the license. If you do not qualify to use Modular, you can ask to obtain permission as detailed in the license.
+**IMPORTANT**: Modular is under an Academic and Non-Commercial Research Use License. Before proceeding, please be aware of the license. If you do not qualify to use Modular, you can ask to obtain permission as detailed in the license.
 
 ## Live Example
 The most up-to-date version of the interface is available at http://commonsense.ckprototype.com/.

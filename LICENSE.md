@@ -1,6 +1,6 @@
 # Modular
 
-###Academic and Non-Commercial Research Use Software License and Terms of Use
+### Academic and Non-Commercial Research Use Software License and Terms of Use
 
 Modular is a software package to allow users to generate various
 visualization, annotation, and user study interfaces. (the “Software”).
@@ -39,11 +39,11 @@ must execute a separate license agreement with UOIT.
 Requests for use of the Software for commercial purposes, please
 contact:
 
-Dr. Christopher Collins
-UOIT, Faculty of Science
-2000 Simcoe Street N
-Oshawa, ON L1H 7K4
-Canada
+Dr. Christopher Collins\
+UOIT, Faculty of Science\ 
+2000 Simcoe Street N\
+Oshawa, ON L1H 7K4\
+Canada\
 christopher.collins@uoit.ca
 
 **3.  OWNERSHIP AND COPYRIGHT NOTICE.** UOIT owns all intellectual property in the Software. End User shall gain no ownership to the Software. End User shall not remove or delete and
@@ -86,7 +86,7 @@ present, or share results from the use of the Software.  In
 accordance with customary academic practice, End User will
 acknowledge UOIT as the providers of the Software and may cite the relevant reference(s) from the following list of publications:
 
--
+_(Pending update)_
 
 **8.  NO WARRANTIES.** THE SOFTWARE IS PROVIDED "AS IS." TO THE FULLEST
 EXTENT PERMITTED BY LAW, UOIT HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND (EXPRESS, IMPLIED OR
