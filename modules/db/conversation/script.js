@@ -1,7 +1,7 @@
 callback.cwcConversation = function(){
 
 
-	var element = $("div[module='cwc/conversation']");
+	var element = $("div[module='db/conversation']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");		
 
@@ -16,7 +16,7 @@ poll.cwcConversation = function(){
 		$("#cwc_conversation_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/conversation/list.php",
+			url: "/modules/db/conversation/list.php",
 			data:{
 				session: session_id
 			},
@@ -98,7 +98,7 @@ $(document).on("click", "#cwc_conversation_send", function(e){
 
 
 		$.ajax({
-			url: "/modules/cwc/conversation/add.php",
+			url: "/modules/db/conversation/add.php",
 			type: "POST",
 			data: {
 				text: input,

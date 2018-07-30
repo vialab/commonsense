@@ -4,7 +4,7 @@ callback.cwcAttribute = function(){
 	$("#cwc_attribute_loading").show();
 
 	$.ajax({
-		url: "/modules/cwc/attribute/type.php",
+		url: "/modules/db/attribute/type.php",
 		success: function(data){
 
 
@@ -18,7 +18,7 @@ callback.cwcAttribute = function(){
 			});
 
 			$.ajax({
-				url: "/modules/cwc/attribute/preset.php",
+				url: "/modules/db/attribute/preset.php",
 				success: function(data){
 
 
@@ -32,7 +32,7 @@ callback.cwcAttribute = function(){
 					});
 
 					$.ajax({
-						url: "/modules/cwc/attribute/attachments.php",
+						url: "/modules/db/attribute/attachments.php",
 						success: function(data){
 
 
@@ -131,7 +131,7 @@ $(document).on("click", "a.cwc_attribute_add", function(e){
 	var actor_id = $("#cwc_attribute_selected").val();
 
 	$.ajax({
-		url: "/modules/cwc/attribute/add.php",
+		url: "/modules/db/attribute/add.php",
 		type: "POST",
 		data: {
 			actor_id: actor_id,
@@ -157,7 +157,7 @@ $(document).on("click", "a.cwc_attribute_preset_add", function(e){
 	var value = $(this).find("span.badge.value").text();
 
 	$.ajax({
-		url: "/modules/cwc/attribute/add.php",
+		url: "/modules/db/attribute/add.php",
 		type: "POST",
 		data: {
 			actor_id: actor_id,
@@ -186,7 +186,7 @@ $(document).on("click", "a.cwc_attribute_attachment_add", function(e){
 	var value = $(this).find("span.badge.value").text();
 
 	$.ajax({
-		url: "/modules/cwc/attribute/add.php",
+		url: "/modules/db/attribute/add.php",
 		type: "POST",
 		data: {
 			actor_id: actor_id,
@@ -217,7 +217,7 @@ poll.cwcAttribute = function(){
 		$("#cwc_attribute_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/attribute/list.php",
+			url: "/modules/db/attribute/list.php",
 			type: "POST",
 			data: {
 				id: $("#cwc_attribute_selected").val()
@@ -269,7 +269,7 @@ poll.cwcAttribute = function(){
 
 				$("#cwc_attribute_list").removeAttr("loading");
 
-				var element = $("div[module='cwc/attribute']");
+				var element = $("div[module='db/attribute']");
 				var height = element.find(".content").outerHeight();
 				element.css("height", height+"px");		
 				element.show();
@@ -297,7 +297,7 @@ $(document).on("click", "i.cwc_attribute_remove", function(e){
 		var rowDOM = $(this).closest("tr");
 
 		$.ajax({
-			url: "/modules/cwc/attribute/remove.php",
+			url: "/modules/db/attribute/remove.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -332,7 +332,7 @@ $(document).on("click", "i.cwc_attribute_edit", function(e){
 		var nameDOM = $(this).closest("tr").find(".value");
 		
 		$.ajax({
-			url: "/modules/cwc/attribute/edit.php",
+			url: "/modules/db/attribute/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -366,7 +366,7 @@ $(document).on("click", "i.cwc_attribute_relabel", function(e){
 		var nameDOM = $(this).closest("tr").find(".label");
 		
 		$.ajax({
-			url: "/modules/cwc/attribute/edit.php",
+			url: "/modules/db/attribute/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -393,7 +393,7 @@ $(document).on("click", "#cwc_attribute_close", function(e){
 
 	$("#cwc_actor_list tr.table-info").removeClass("table-info");	
 
-	var element = $("div[module='cwc/attribute']");
+	var element = $("div[module='db/attribute']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");		
 

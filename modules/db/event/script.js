@@ -24,7 +24,7 @@ $(document).on("click", "#cwc_event_add", function(e){
 	// var order = $("#cwc_event_list tr:not(.timeline_row)").length+1;	
 
 	// $.ajax({
-	// 	url: "/modules/cwc/event/add.php",
+	// 	url: "/modules/db/event/add.php",
 	// 	type: "POST",
 	// 	data: {
 	// 		order: order
@@ -51,7 +51,7 @@ poll.cwcEvent = function(){
 		$("#cwc_event_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/event/list.php",
+			url: "/modules/db/event/list.php",
 			data: {
 				session: session_id
 			},
@@ -190,7 +190,7 @@ poll.cwcEvent = function(){
 								var db = o.INTERACTION_ID;
 
 								$.ajax({
-									url: "/modules/cwc/sequence/update.php",
+									url: "/modules/db/sequence/update.php",
 									type: "POST",
 									data: {
 										db: db,
@@ -245,7 +245,7 @@ poll.cwcEvent = function(){
 				$("#cwc_event_list").removeAttr("loading");
 
 
-				var element = $("div[module='cwc/event']");
+				var element = $("div[module='db/event']");
 				var height = element.find(".content").outerHeight();
 				element.css("height", height+"px");		
 
@@ -338,7 +338,7 @@ function cwcEventAssign(index) {
 
 
 	$.ajax({
-		url: "/modules/cwc/event/assign.php",
+		url: "/modules/db/event/assign.php",
 		type: "POST",
 		data: {
 			column: column,
@@ -372,7 +372,7 @@ $(document).on("click", "i.cwc_event_remove", function(e){
 		var rowDOM = $(this).closest("tr");
 
 		$.ajax({
-			url: "/modules/cwc/event/remove.php",
+			url: "/modules/db/event/remove.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -413,7 +413,7 @@ $(document).on("click", "i.cwc_event_cycle", function(e){
 	}
 
 	$.ajax({
-		url: "/modules/cwc/event/direction.php",
+		url: "/modules/db/event/direction.php",
 		type: "POST",
 		data: {
 			id: id,
@@ -443,7 +443,7 @@ $(document).on("click", "i.cwc_event_description", function(e){
 		var nameDOM = $(this).closest("tr").find(".description");
 		
 		$.ajax({
-			url: "/modules/cwc/event/edit.php",
+			url: "/modules/db/event/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -477,7 +477,7 @@ function cwcReorder(){
 	console.log(list);
 
 	$.ajax({
-		url: "/modules/cwc/event/reorder.php",
+		url: "/modules/db/event/reorder.php",
 		type: "POST",
 		data: {
 			list: list

@@ -1,6 +1,6 @@
 callback.cwcGraph = function(){
 	
-	var element = $("div[module='cwc/graph']");
+	var element = $("div[module='db/graph']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");			
 
@@ -482,7 +482,7 @@ poll.cwcListener = function(){
 		$("#cwc_listener_log").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/graph/poll.php",
+			url: "/modules/db/graph/poll.php",
 			data:{
 				session: session_id
 			},
@@ -566,7 +566,7 @@ $(document).on("dblclick", "#cwc_graph_svg_elevation circle", function(e){
 	$("#cwc_listener_log").attr("writing", "true");
 
 	$.ajax({
-		url: "/modules/cwc/position/push.php",
+		url: "/modules/db/position/push.php",
 		type: "POST",
 		data: {
 			id: index,
@@ -627,7 +627,7 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
 
 			$.ajax({
-				url: "/modules/cwc/position/push.php",
+				url: "/modules/db/position/push.php",
 				type: "POST",
 				data: {
 					id: cwc_graph_index,
@@ -657,7 +657,7 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
 
 			$.ajax({
-				url: "/modules/cwc/position/push.php",
+				url: "/modules/db/position/push.php",
 				type: "POST",
 				data: {
 					id: cwc_graph_index,
@@ -706,7 +706,7 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 		$("#cwc_listener_log").attr("writing", "true");
 
 		$.ajax({
-			url: "/modules/cwc/position/push.php",
+			url: "/modules/db/position/push.php",
 			type: "POST",
 			data: {
 				id: cwc_graph_index,
@@ -1031,7 +1031,7 @@ function cwcProcessActive(){
 		} else {
 
 			$.ajax({
-				url: "/modules/cwc/graph/add_interaction.php",
+				url: "/modules/db/graph/add_interaction.php",
 				type: "POST",
 				data: {
 					actor0: actor0,

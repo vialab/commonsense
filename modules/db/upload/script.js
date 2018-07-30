@@ -156,7 +156,7 @@ $(document).on("change", "#cwc_upload_file", function(){
 										obj.session = session_id;
 
 										$.ajax({
-											url: "/modules/cwc/upload/upload.php",
+											url: "/modules/db/upload/upload.php",
 											data: obj,
 											type: "POST",
 											success: function(data){
@@ -215,7 +215,7 @@ $(document).on("change", "#cwc_upload_file", function(){
 
 
 		// $.ajax({
-		// 	url: "/modules/cwc/upload/upload.php",
+		// 	url: "/modules/db/upload/upload.php",
 		// 	data: obj,
 		// 	type: "POST",
 		// 	success: function(data){

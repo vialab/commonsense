@@ -24,7 +24,7 @@ $(document).on("click", "#cwc_relationship_add", function(e){
 	var order = $("#cwc_relationship_list tr").length+1;	
 
 	$.ajax({
-		url: "/modules/cwc/relationship/add.php",
+		url: "/modules/db/relationship/add.php",
 		type: "POST",
 		data: {
 			order: order
@@ -49,7 +49,7 @@ poll.cwcRelationship = function(){
 		$("#cwc_relationship_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/relationship/list.php",
+			url: "/modules/db/relationship/list.php",
 			data: {
 				session: session_id
 			},			
@@ -196,7 +196,7 @@ poll.cwcRelationship = function(){
 				$("#cwc_relationship_list").removeAttr("loading");
 
 
-				var element = $("div[module='cwc/relationship']");
+				var element = $("div[module='db/relationship']");
 				var height = element.find(".content").outerHeight();
 				element.css("height", height+"px");		
 
@@ -284,7 +284,7 @@ function cwcRelationshipAssign(index) {
 
 
 	$.ajax({
-		url: "/modules/cwc/relationship/assign.php",
+		url: "/modules/db/relationship/assign.php",
 		type: "POST",
 		data: {
 			column: column,
@@ -319,7 +319,7 @@ $(document).on("click", "i.cwc_relationship_remove", function(e){
 		var rowDOM = $(this).closest("tr");
 
 		$.ajax({
-			url: "/modules/cwc/relationship/remove.php",
+			url: "/modules/db/relationship/remove.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -361,7 +361,7 @@ $(document).on("click", "i.cwc_relationship_cycle", function(e){
 	}
 
 	$.ajax({
-		url: "/modules/cwc/relationship/direction.php",
+		url: "/modules/db/relationship/direction.php",
 		type: "POST",
 		data: {
 			id: id,
@@ -390,7 +390,7 @@ $(document).on("click", "i.cwc_relationship_description", function(e){
 		var nameDOM = $(this).closest("tr").find(".description");
 		
 		$.ajax({
-			url: "/modules/cwc/relationship/edit.php",
+			url: "/modules/db/relationship/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -425,7 +425,7 @@ function cwcRelationshipReorder(){
 	console.log(list);
 
 	$.ajax({
-		url: "/modules/cwc/relationship/reorder.php",
+		url: "/modules/db/relationship/reorder.php",
 		type: "POST",
 		data: {
 			list: list

@@ -1,6 +1,6 @@
 callback.cwcPosition = function(){
 	
-	var element = $("div[module='cwc/position']");
+	var element = $("div[module='db/position']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");		
 
@@ -256,7 +256,7 @@ $(document).on("dblclick", "#cwc_position_svg_elevation circle", function(e){
 	$("#cwc_listener_log").attr("writing", "true");
 
 	$.ajax({
-		url: "/modules/cwc/position/push.php",
+		url: "/modules/db/position/push.php",
 		type: "POST",
 		data: {
 			id: index,
@@ -315,7 +315,7 @@ $(document).on("mouseup", ".cwc_position_svg_top", function(e){
 
 
 			$.ajax({
-				url: "/modules/cwc/position/push.php",
+				url: "/modules/db/position/push.php",
 				type: "POST",
 				data: {
 					id: cwc_position_index,
@@ -340,7 +340,7 @@ $(document).on("mouseup", ".cwc_position_svg_top", function(e){
 
 
 			$.ajax({
-				url: "/modules/cwc/position/push.php",
+				url: "/modules/db/position/push.php",
 				type: "POST",
 				data: {
 					id: cwc_position_index,

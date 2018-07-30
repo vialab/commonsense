@@ -61,7 +61,7 @@ poll.cwcSequence = function(){
 		$("#cwc_sequence_timeline").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/sequence/list.php",
+			url: "/modules/db/sequence/list.php",
 			success: function(data){
 
 				var cwcList = JSON.parse(data);
@@ -207,7 +207,7 @@ poll.cwcSequence = function(){
 								var db = o.INTERACTION_ID;
 
 								$.ajax({
-									url: "/modules/cwc/sequence/update.php",
+									url: "/modules/db/sequence/update.php",
 									type: "POST",
 									data: {
 										db: db,
@@ -240,7 +240,7 @@ poll.cwcSequence = function(){
 				$("#cwc_sequence_timeline").removeAttr("loading");
 
 
-				var element = $("div[module='cwc/event']");
+				var element = $("div[module='db/event']");
 				var height = element.find(".content").outerHeight();
 				element.css("height", height+"px");		
 

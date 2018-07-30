@@ -24,7 +24,7 @@ $(document).on("click", "#cwc_interaction_add", function(e){
 	var order = $("#cwc_interaction_list tr").length+1;	
 
 	$.ajax({
-		url: "/modules/cwc/interaction/add.php",
+		url: "/modules/db/interaction/add.php",
 		type: "POST",
 		data: {
 			order: order
@@ -48,7 +48,7 @@ poll.cwcInteraction = function(){
 		$("#cwc_interaction_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/interaction/list.php",
+			url: "/modules/db/interaction/list.php",
 			success: function(data){
 
 				var cwcList = JSON.parse(data);
@@ -149,7 +149,7 @@ poll.cwcInteraction = function(){
 				$("#cwc_interaction_list").removeAttr("loading");
 
 
-				var element = $("div[module='cwc/interaction']");
+				var element = $("div[module='db/interaction']");
 				var height = element.find(".content").outerHeight();
 				element.css("height", height+"px");		
 
@@ -219,7 +219,7 @@ function cwcInteractionAssign(index) {
 
 
 	$.ajax({
-		url: "/modules/cwc/interaction/assign.php",
+		url: "/modules/db/interaction/assign.php",
 		type: "POST",
 		data: {
 			column: column,
@@ -252,7 +252,7 @@ $(document).on("click", "i.cwc_interaction_remove", function(e){
 		var rowDOM = $(this).closest("tr");
 
 		$.ajax({
-			url: "/modules/cwc/interaction/remove.php",
+			url: "/modules/db/interaction/remove.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -286,7 +286,7 @@ $(document).on("click", "i.cwc_interaction_description", function(e){
 		var nameDOM = $(this).closest("tr").find(".description");
 		
 		$.ajax({
-			url: "/modules/cwc/interaction/edit.php",
+			url: "/modules/db/interaction/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -318,7 +318,7 @@ function cwcReorder(){
 	});	
 
 	$.ajax({
-		url: "/modules/cwc/interaction/reorder.php",
+		url: "/modules/db/interaction/reorder.php",
 		type: "POST",
 		data: {
 			list: list

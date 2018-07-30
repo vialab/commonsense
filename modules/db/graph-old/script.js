@@ -1,6 +1,6 @@
 callback.cwcGraph = function(){
 	
-	var element = $("div[module='cwc/graph']");
+	var element = $("div[module='db/graph']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");			
 
@@ -279,7 +279,7 @@ $(document).on("mouseup", "#cwc_graph_svg", function(e){
 		var py = parseFloat(y) / cHeight * 100;
 
 		$.ajax({
-			url: "/modules/cwc/graph/push.php",
+			url: "/modules/db/graph/push.php",
 			type: "POST",
 			data: {
 				id: cwc_graph_index,
@@ -391,7 +391,7 @@ $(document).on("dblclick", "#cwc_graph_svg circle", function(e){
 // 		var nameDOM = $(this);
 		
 // 		$.ajax({
-// 			url: "/modules/cwc/graph/rename.php",
+// 			url: "/modules/db/graph/rename.php",
 // 			type: "POST",
 // 			data: {
 // 				id: id,
@@ -428,7 +428,7 @@ poll.cwcListener = function(){
 		$("#cwc_listener_log").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/graph/poll.php",
+			url: "/modules/db/graph/poll.php",
 			success: function(data){
 
 				var date = moment().format("YYYY-MM-DD hh:mm:ss");

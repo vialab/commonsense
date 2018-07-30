@@ -1,6 +1,6 @@
 function cwcAssetResize(){
 
-	var element = $("div[module='cwc/asset']");
+	var element = $("div[module='db/asset']");
 	var height = element.find(".content").outerHeight();
 	element.css("height", height+"px");		
 
@@ -41,7 +41,7 @@ $(document).on("click", "#cwc_asset_mode a", function(e){
 	$("#cwc_asset_search").val("");
 
 	$.ajax({
-		url: "/modules/cwc/asset/type.php",
+		url: "/modules/db/asset/type.php",
 		data: {
 			type: type,
 			characters: characters
@@ -131,7 +131,7 @@ poll.cwcProp = function(){
 		$("#cwc_actor_list").attr("loading", "true");
 
 		$.ajax({
-			url: "/modules/cwc/asset/list.php",
+			url: "/modules/db/asset/list.php",
 			data: {
 				session: session_id
 			},
@@ -221,7 +221,7 @@ $(document).on("click", "a.cwc_asset_add", function(e){
 	var id = $(this).data("db");
 
 	$.ajax({
-		url: "/modules/cwc/asset/add.php",
+		url: "/modules/db/asset/add.php",
 		type: "POST",
 		data: {
 			id: id,
@@ -257,7 +257,7 @@ $(document).on("click", "i.cwc_asset_rename", function(e){
 		var nameDOM = $(this).closest("tr").find(".name");
 		
 		$.ajax({
-			url: "/modules/cwc/asset/edit.php",
+			url: "/modules/db/asset/edit.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -286,7 +286,7 @@ $(document).on("click", "i.cwc_asset_remove", function(e){
 		var rowDOM = $(this).closest("tr");
 
 		$.ajax({
-			url: "/modules/cwc/asset/remove.php",
+			url: "/modules/db/asset/remove.php",
 			type: "POST",
 			data: {
 				id: id,
@@ -297,7 +297,7 @@ $(document).on("click", "i.cwc_asset_remove", function(e){
 
 				if (rowDOM.hasClass("table-info") == true) {
 
-					$("div[module='cwc/attribute']").hide();
+					$("div[module='db/attribute']").hide();
 
 				}
 
@@ -323,7 +323,7 @@ $(document).on("click", "#cwc_asset_clear", function(e){
 	if (response == true) {
 
 		$.ajax({
-			url: "/modules/cwc/asset/clear.php",
+			url: "/modules/db/asset/clear.php",
 			type: "POST",
 			data:{
 				session: session_id

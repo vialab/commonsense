@@ -4,7 +4,7 @@ callback.cwcAttachment = function(){
 	$("#cwc_attachment_loading").show();
 
 	// $.ajax({
-	// 	url: "/modules/cwc/attribute/type.php",
+	// 	url: "/modules/db/attribute/type.php",
 	// 	success: function(data){
 
 
@@ -18,7 +18,7 @@ callback.cwcAttachment = function(){
 	// 		});
 
 	// 		$.ajax({
-	// 			url: "/modules/cwc/attribute/preset.php",
+	// 			url: "/modules/db/attribute/preset.php",
 	// 			success: function(data){
 
 
