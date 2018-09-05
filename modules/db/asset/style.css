@@ -4,15 +4,27 @@
 }
 
 
-#cwc_asset_list
+#cwc_actor_container
 {
 	overflow-y: scroll;
 	max-height:200px;
+	/*padding-right:20px;*/
+}
+
+#cwc_asset_mode a span
+{
+	display:block;
 }
 
 #cwc_actor_list i
 {
 	cursor: pointer;
+}
+
+#cwc_asset_mode i
+{
+	opacity: 1 !important;
+	
 }
 
 #cwc_actor_list
@@ -23,4 +35,73 @@
 #cwc_asset_mode a
 {
 	transition: all 0.5s ease;
+}
+
+#cwc_actor_list
+{
+	max-height:300px;
+	overflow-y: auto;
+}
+
+div.module[module='db/asset'] .dropdown-menu
+{
+	max-height:300px;
+	overflow-y: auto;	
+}
+
+#cwc_asset_add, #cwc_asset_new
+{
+	display:none;
+}
+
+div.module[module='db/asset'][meta='NONE'] div.card-body
+{
+	display:none;
+}
+
+div.module[module='db/asset'][meta='NONE'] div.card-body a.cwc_actor_swap
+{
+	display:none;
+}
+
+div.module[module='db/asset'][meta='ALL'] div.card-body
+{
+	/*display:none;*/
+}
+
+div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_add, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_new
+{
+	display:inline-block;
+}
+
+div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_dropdown_menu, div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_clear, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_clear, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_clear, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_dropdown_menu
+{
+	display:none;
+}	
+
+div.module[module='db/asset'][meta='NONE'] i.cwc_asset_attribute
+{
+	display:none;
+
+}
+
+div.module[module='db/asset'][meta='SCENE'] i.cwc_asset_attribute
+{
+	/*display:none;*/
+}
+
+div.module[module='db/asset'][meta='SCENE'] table th:nth-child(2), div.module[module='db/asset'][meta='SCENE'] table th:nth-child(4), div.module[module='db/asset'][meta='SCENE'] table th:nth-child(5), div.module[module='db/asset'][meta='SCENE'] table td:nth-child(2), div.module[module='db/asset'][meta='SCENE'] table td:nth-child(4), div.module[module='db/asset'][meta='SCENE'] table td:nth-child(5), div.module[module='db/asset'][meta='ALL'] table th:nth-child(2), div.module[module='db/asset'][meta='ALL'] table th:nth-child(4), div.module[module='db/asset'][meta='ALL'] table th:nth-child(5), div.module[module='db/asset'][meta='ALL'] table td:nth-child(2), div.module[module='db/asset'][meta='ALL'] table td:nth-child(4), div.module[module='db/asset'][meta='ALL'] table td:nth-child(5), div.module[module='db/asset'][meta='NONE'] table th:nth-child(2), div.module[module='db/asset'][meta='NONE'] table th:nth-child(4), div.module[module='db/asset'][meta='NONE'] table th:nth-child(5), div.module[module='db/asset'][meta='NONE'] table td:nth-child(2), div.module[module='db/asset'][meta='NONE'] table td:nth-child(4), div.module[module='db/asset'][meta='NONE'] table td:nth-child(5)
+{
+	display:none;
+}
+
+
+#cwc_actor_list tr[data-asset-name='Generic'] th, #cwc_actor_list tr[data-asset-name='Generic'] td
+{
+	background-color:lightyellow;
+}
+
+#cwc_actor_list tr.swap th, #cwc_actor_list tr.swap td
+{
+	background-color:pink !important;
 }

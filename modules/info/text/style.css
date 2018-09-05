@@ -1,0 +1,10 @@
+div[module='info/text'] p span
+{
+	cursor: pointer;
+}
+
+div[module='info/text'] p span.active
+{
+	font-weight:bold;
+	color:#007bff;
+}

@@ -1,0 +1,96 @@
+[
+	{
+		"type": "h3",
+		"list": [
+			{
+				"t": "Q.",
+				"h": "strong"
+			},
+			{
+				"t": "Hello",
+				"v": 0.523
+			},
+			{
+				"t": "world",
+				"v": 0.9
+			}
+		]	
+	},
+	{
+		"type": "p",
+		"list": [
+			{
+				"t": "A.",
+				"h": "strong"
+			},
+			{
+				"t": "Lorem",
+				"v": 0.523
+			},
+			{
+				"t": "ipsum",
+				"v": 0.9
+			}
+		]	
+	},
+	{
+		"type": "p",
+		"list": [
+			{
+				"t": "Lorem"
+			},
+			{
+				"t": "ipsum"
+			},
+			{
+				"t": "dolor"
+			},
+			{
+				"t": "sit"
+			},
+			{
+				"t": "amet,"
+			},
+			{
+				"t": "consectetur"
+			},
+			{
+				"t": "adipiscing"
+			},
+			{
+				"t": "elit."
+			},
+			{
+				"t": "Mauris"
+			},
+			{
+				"t": "leo"
+			},
+			{
+				"t": "ipsum,"
+			},
+			{
+				"t": "tempus"
+			},
+			{
+				"t": "ut"
+			},
+			{
+				"t": "turpis"
+			},
+			{
+				"t": "vel,"
+			},
+			{
+				"t": "vehicula"
+			},
+			{
+				"t": "mollis"
+			},
+			{
+				"t": "mi."
+			}
+
+		]	
+	}	
+]

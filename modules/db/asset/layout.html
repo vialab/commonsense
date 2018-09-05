@@ -1,33 +1,37 @@
 <div class="card">
 	<div class="card-header bg-dark text-white">
-		<i class="fa fa-th"></i> Actors and Stage Objects
+		<i class="fa fa-th"></i> Actors, Actions, Props, and Position
 	</div>
 
 
 	<nav class="nav nav-pills nav-justified" id="cwc_asset_mode">
-	  <a class="nav-item nav-link py-1" data-type="1" href="#"><i class="fa fa-user"></i><!--<br><small class="line-height:1">Character</small>--></a>
-	  <a class="nav-item nav-link py-1" data-type="3" href="#"><i class="fa fa-walking"></i><!--<br><small class="line-height:1">Action</small>--></a>
-	  <a class="nav-item nav-link py-1" data-type="2" href="#"><i class="fa fa-tree"></i><!--<br><small class="line-height:1">Prop</small>--></a>
-	  <a class="nav-item nav-link py-1" data-type="4" href="#"><i class="fa fa-map-marker-alt"></i><!--<br><small class="line-height:1">Position</small>--></a>
-	  <a class="nav-item nav-link py-1" data-type="5" href="#"><i class="fa fa-video"></i><!--<br><small class="line-height:1">Camera</small>--></a>
+	  <a data-db="18389" data-label="Character" class="nav-item nav-link py-1" data-type="1" href="#"><i class="fa fa-user"></i><!--<br><small class="line-height:1">Character</small>--></a>
+	  <a data-db="18391" data-label="Action" class="nav-item nav-link py-1" data-type="3" href="#"><i class="fa fa-walking"></i><!--<br><small class="line-height:1">Action</small>--></a>
+	  <a data-db="18390" data-label="Prop" class="nav-item nav-link py-1" data-type="2" href="#"><i class="fa fa-tree"></i><!--<br><small class="line-height:1">Prop</small>--></a>
+	  <a data-db="18392" data-label="Position" class="nav-item nav-link py-1" data-type="4" href="#"><i class="fa fa-map-marker-alt"></i><!--<br><small class="line-height:1">Position</small>--></a>
+	  <a data-db="" data-label="Camera" class="nav-item nav-link py-1" data-type="5" href="#"><i class="fa fa-video"></i><!--<br><small class="line-height:1">Camera</small>--></a>
 	  <!-- <a class="nav-item nav-link py-1" data-type="6" href="#"><i class="fa fa-glasses"></i><br><small class="line-height:1">Attachment</small></a> -->
 	</nav>
 
-	<table class="table table-sm mb-0" style="table-layout: fixed">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">&nbsp;</th>
-	      <th scope="col">Type</th>
-	      <th scope="col">Name</th>
-	      <th scope="col">RX</th>
-	      <th scope="col">RY</th>
-	      <th scope="col">&nbsp;</th>
-	    </tr>
-	  </thead>
-	  <tbody id="cwc_actor_list">
+	<div id="cwc_actor_container">
 
-	  </tbody>
-	</table>
+		<table class="table table-sm mb-0" style="table-layout: fixed">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">&nbsp;</th>
+		      <th scope="col">Type</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">RX</th>
+		      <th scope="col">RY</th>
+		      <th scope="col">&nbsp;</th>
+		    </tr>
+		  </thead>
+		  <tbody id="cwc_actor_list">
+
+		  </tbody>
+		</table>
+
+	</div>
 
 	<div class="alert alert-info rounded-0 text-center" id="cwc_asset_loading">Loading</div>
 
@@ -47,10 +51,10 @@
 
 
 		  <div class="btn-group" role="group">
-		    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <button id="cwc_asset_dropdown_menu" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		      Add
 		    </button>
-		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+		    <div class="dropdown-menu" aria-labelledby="cwc_asset_dropdown_menu">
 
 		    	<div class="px-2 pb-2 border-bottom">
 
@@ -66,6 +70,10 @@
 		    </div>
 		  </div>
 			<button class="btn btn-danger btn-sm" type="button" id="cwc_asset_clear">Clear Assets</button>
+
+			<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_add">Add <strong></strong> From Text <span></span></button>
+
+			<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_new">Add New <strong></strong></button>
 
 		</div>
 

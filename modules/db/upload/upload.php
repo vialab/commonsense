@@ -102,24 +102,29 @@
 
 					foreach ($list as $node) {
 
-						$name = "(".$node->name.")";
+						$name = $node->name;
 
+						$meta = "";
 						
 						if ($type == "entity") {
 
 						    $id = 18389;
+						    $meta = "MAIN";
 
 						} else if ($type == "action") {
 
 					    	$id = 18391;
+						    $meta = "ALL";
 
 						} else if ($type == "interaction") {
 
 					    	$id = 18391;
+						    $meta = "ALL";
 
 						} else if ($type == "summary") {
 
 					    	$id = 18391;
+						    $meta = "ALL";
 
 						}							  
 
@@ -132,12 +137,70 @@
 					    $x = ($node->x - $xMin) / ($xMax - $xMin) * (90 - 10) + 10;
 					    $y = ($node->y - $yMin) / ($yMax - $yMin) * (90 - 10) + 10;
 
-					    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION) VALUES (?, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?)");
-					    $stmt->bind_param('isdds', $id, $name, $x, $y, $session);
-					    $stmt->execute();
+					    $name = str_replace("Forrest Gump", "Young Forrest Gump", $name);
 
-					    $nodeList[$node->node_id] = $stmt->insert_id;
-					    $nodeList2[$type][$node->node_id] = $stmt->insert_id;
+					    $extid = md5($name);
+
+						if ($type == "entity") {
+
+						    $query = "SELECT * FROM ACTORS WHERE EXT_ID = '$extid' AND SESSION = '$session' AND META = 'MAIN'";
+						    $result = $conn->query($query);            
+
+						    if ($result->num_rows > 0) {
+
+						        while ($row = $result->fetch_object()){
+						            $item = $row;
+						        }
+
+							    $nodeList[$node->node_id] = $item->ACTOR_ID;
+							    $nodeList2[$type][$node->node_id] = $item->ACTOR_ID;
+
+						    } else {
+
+							    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (?, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?, ?, ?)");
+							    $stmt->bind_param('isddsss', $id, $name, $x, $y, $session, $meta, $extid);
+							    $stmt->execute();
+
+							    $nodeList[$node->node_id] = $stmt->insert_id;
+							    $nodeList2[$type][$node->node_id] = $stmt->insert_id;
+							    	
+
+
+
+				                $meta = "FACE";
+				                $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (?, ?, 50, 50, 50, 50, 0, 0, 0, 0, ?, ?, ?)");
+				                $stmt->bind_param('issss', $id, $name, $session, $meta, $extid);
+				                $stmt->execute();
+
+				                $meta = "BODY";
+				                $stmt->bind_param('issss', $id, $name, $session, $meta, $extid);
+				                $stmt->execute();
+
+				                $meta = "POSE";
+				                $stmt->bind_param('issss', $id, $name, $session, $meta, $extid);
+				                $stmt->execute();
+
+				                $meta = "FIGURE";
+				                $stmt->bind_param('issss', $id, $name, $session, $meta, $extid);
+				                $stmt->execute();
+
+
+
+						    }
+
+						} else {
+
+
+						    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (?, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?, ?, ?)");
+						    $stmt->bind_param('isddsss', $id, $name, $x, $y, $session, $meta, $extid);
+						    $stmt->execute();
+
+						    $nodeList[$node->node_id] = $stmt->insert_id;
+						    $nodeList2[$type][$node->node_id] = $stmt->insert_id;
+
+
+						}
+
 
 					}
 

@@ -16,6 +16,9 @@ callback.infoHeadline = function(){
 
 			$("div[module='info/headline'] .jumbotron").html(html);
 
+			$("div[module='info/headline'] .jumbotron a").attr("target", "_blank");
+			$("div[module='info/headline'] .jumbotron a").attr("class", "btn btn-primary");
+
 			var element = $("div[module='info/headline']");
 			var height = element.find(".content").outerHeight();
 			element.css("height", height+"px");			

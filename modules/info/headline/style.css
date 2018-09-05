@@ -1,0 +1,4 @@
+div.module[module='info/headline'] .jumbotron *:last-child
+{
+	margin-bottom: 0 !important;
+}

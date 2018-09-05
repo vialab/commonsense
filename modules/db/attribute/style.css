@@ -13,3 +13,23 @@
 	height:300px;
 	overflow-y: auto;
 }
+
+
+
+#cwc_attribute_moviegraph_list_container
+{
+	display:none;
+}
+
+
+.module[module='db/attribute'][meta='MG'] #cwc_attribute_moviegraph_list_container
+{
+	display:inline-block;
+}
+
+.module[module='db/attribute'][meta='MG'] #cwc_attribute_type_list_container
+{
+	/*display:none;*/
+/*	transition: all 0.25s ease;
+	z-index: 100;*/
+}

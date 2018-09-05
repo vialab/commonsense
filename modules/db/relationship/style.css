@@ -29,6 +29,12 @@
     background-color: white;
 }
 
+#cwc_relationship_card tr th:nth-child(2), #cwc_relationship_list tr td:nth-child(2)
+{
+	display:none !important;
+}
+
+
 #cwc_attribute_loading
 {
 	

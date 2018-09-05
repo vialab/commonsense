@@ -174,6 +174,34 @@ $(document).on("click", "a.cwc_attribute_preset_add", function(e){
 
 });
 
+$(document).on("click", "#cwc_attribute_moviegraph_list a", function(e){
+
+	e.preventDefault();
+
+	var type_id = 9
+	var actor_id = $("#cwc_attribute_selected").val();
+	var label = $(this).attr("data");
+	var value = "";
+
+	$.ajax({
+		url: "/modules/db/attribute/add.php",
+		type: "POST",
+		data: {
+			actor_id: actor_id,
+			type_id: type_id,
+			label: label,
+			value: value
+		},
+		success: function(data){
+
+			poll.cwcAttribute();
+
+		}
+	});
+
+});
+
+
 
 $(document).on("click", "a.cwc_attribute_attachment_add", function(e){
 

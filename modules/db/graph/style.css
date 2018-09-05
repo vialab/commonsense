@@ -40,6 +40,10 @@
 	stroke: #eee;
 }
 
+div.module[module='db/graph'][meta='FREEFORM'] #cwc_graph_svg_toggle
+{
+	display:none;
+}
 
 
 .cwc_graph_svg_top circle[type='CHARACTERS']
@@ -54,7 +58,7 @@
 
 .cwc_graph_svg_top circle[type='ACTION'], .cwc_graph_svg_top circle[type='POSITION']
 {
-	fill: transparent !important;
+	fill: transparent;
 }
 
 .cwc_graph_svg_top rect
@@ -125,7 +129,7 @@
 
 .cwc_graph_svg_top *.active
 {
-	fill: red;	
+	fill: red !important; 	
 }
 
 #cwc_graph_prompt
@@ -147,4 +151,17 @@
 .cwc_graph_svg_top polyline[direction='1']
 {
 	marker-mid: url(#D1);
+}
+
+
+.cwc_graph_svg_top polyline[type='3']
+{
+	stroke-dasharray: 4;
+}
+
+
+
+.cwc_graph_svg_top *[asset='Generic']
+{	
+	fill: lightyellow;
 }

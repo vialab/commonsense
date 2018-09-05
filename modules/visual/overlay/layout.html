@@ -1,3 +1,56 @@
+<div class="alert alert-info text-center mb-2" id="visual_overlay_guide">
+<div class="row">
+
+	<div class="col-12 mb-2">
+		<strong><i class="fa fa-info-circle"></i> Quick Guide</strong>
+	</div>
+
+
+
+	<div class="col-2">
+
+		<strong>P key</strong><br><small class="d-block mt-1" style="line-height: 1.2">Play/pause video</small>
+
+	</div>
+	<div class="col-2">
+		<strong>Arrow keys</strong><br><small class="d-block mt-1" style="line-height: 1.2">Move forward or backward by one frame</small>
+
+	</div>
+
+	<div class="col-2">
+		<strong>J / K keys</strong><br><small class="d-block mt-1" style="line-height: 1.2">Go to previous / next keyframe</small>
+
+	</div>
+
+
+	<div class="col-2">
+		<strong>, / . keys</strong><br><small class="d-block mt-1" style="line-height: 1.2">Mark current frame as start / end</small>
+
+	</div>
+
+	<div class="col-2">
+		<strong># keys / dblclick</strong><br><small class="d-block mt-1" style="line-height: 1.2">Insert new marker (or new vertex) at current time</small>
+
+	</div>
+
+	<div class="col-2">
+		<strong>Click and drag</strong><br><small class="d-block mt-1" style="line-height: 1.2">Move bounding box or vertex</small>
+
+
+	</div>
+
+	<div class="col-2">
+
+		<strong>Right click</strong><br><small class="d-block mt-1" style="line-height: 1.2">Remove vertex</small>
+
+	</div>
+
+</div>
+
+</div>
+
+
+
 <div class="card">
 <!-- 	<div class="card-header bg-dark text-white">
 		<i class="fa fa-question-circle"></i> Detected Objects
@@ -9,15 +62,74 @@
 		Want to select a <strong>time range</strong> instead? Click the box, <strong>move the time cursor</strong>, and click on the box again.
 	</div> -->
 
-	<div data-db='' id="visual-bbox-timeline-template" class='visual-bbox-bar pb-3 mb-3 border-bottom' style="display:none;">
-		<div class='align-self-center'>
+
+	<div data-db='' id="visual-bbox-timeline-template" class='visual-bbox-bar pb-3 mb-3 border-bottom' style="display:none; overflow: visible;">
+		<div class='align-self-center' style=" overflow: visible;">
 			<h6></h6>
-			<div class='bg-light border position-relative' style='height:10px;'><svg class='position-absolute h-100 w-100' style='left:0; top:0; overflow: visible;'></svg></div></div><div class='align-self-center mt-2'><button class='btn btn-primary btn-sm visual-bbox-insert'><i class='fa fa-plus'></i></button> <button class='btn btn-primary btn-sm visual-bbox-spot'><i class='fa fa-chevron-down'></i></button> <button class='btn btn-danger btn-sm visual-bbox-remove'><i class='fa fa-minus'></i></button>
+
+
+			<div class='bg-light position-relative' style='height:10px; overflow:visible;'><svg class='border position-absolute h-100 w-100' style='left:0; top:0; overflow: visible;'></svg></div>
+
+		</div>
+
+		<div class='align-self-center mt-2'>
+
+			<div class="row">
+
+				<div class="col-7">
+
+					<button class='btn btn-info btn-sm visual-bbox-insert' data-type="1"><i class='fa fa-plus'></i> Insert Keyframe</button> <button class='btn btn-info btn-sm visual-bbox-hide' data-type="1"><i class='fa fa-circle'></i> Hide Marker <small>(set to 0x0)</small></button> <!-- <button class='btn btn-success btn-sm visual-bbox-insert' data-type="2"><i class='fa fa-draw-polygon'></i> Polygon</button>  --><!-- <button class='btn btn-primary btn-sm visual-bbox-spot'><i class='fa fa-chevron-down'></i></button>  --><button class='btn btn-info btn-sm visual-bbox-reset'><i class='fa fa-power-off'></i> Reset Keyframe</button> <button class='btn btn-info btn-sm visual-bbox-remove'><i class='fa fa-times'></i> Remove Keyframe</button>
+
+
+				</div>
+
+
+				<div class="col-5 text-right">
+		
+					<button class='btn btn-info btn-sm visual-bbox-start ml-0 align-middle'><i class='fa fa-chevron-left'></i> Mark</button>
+
+					<input type="text" readonly class="form-control visual-bbox-start-text form-control-sm d-inline-block align-middle" style="width:60px;">
+
+					<input type="text" readonly class="form-control visual-bbox-end-text form-control-sm d-inline-block align-middle" style="width:60px;">
+
+					<button class='btn btn-info btn-sm visual-bbox-end align-middle'><i class='fa fa-chevron-right'></i> Mark</button>
+
+					<div class="mt-2">
+
+						<button class='btn btn-info btn-sm visual-bbox-range-create align-middle'><i class='fa fa-plus'></i> Create Range</button>
+
+						<button class='btn btn-info btn-sm visual-bbox-range-remove align-middle'><i class='fa fa-times'></i> Remove Range</button>
+
+
+						<button class='btn btn-info btn-sm visual-bbox-insert-action align-middle'><i class='fa fa-walking'></i> Upsert Action</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+
+
 		</div>
 	</div>
 
-  <div class="card-body" id="visual-bbox-timeline">
 
+  <div class="card-body">
+
+  	<div id="visual-bbox-timeline" style=" overflow: visible;">
+
+
+  	</div>
+
+	<div id="visual-overlay-loading" class="alert alert-info text-center">
+
+		Loading...
+
+	</div>
 
   </div>
 <!-- 

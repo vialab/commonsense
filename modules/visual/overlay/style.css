@@ -1,3 +1,12 @@
+.module[module='visual/overlay']
+{
+    overflow: hidden;
+    overflow-x:hidden;
+    overflow-y: auto;
+	height:100%;
+	position: relative;	
+}
+
 .visual-overlay-canvas-box:hover
 {
 	cursor: pointer;
@@ -12,6 +21,97 @@
 div.visual-bbox-bar circle
 {
 	cursor: pointer;
+}
+
+
+div.visual-bbox-bar:nth-child(1) button
+{
+	background-color:#D50000 !important;
+	border-color:#D50000 !important;
+}
+
+
+div.visual-bbox-bar:nth-child(2) button
+{
+	background-color:#2962FF !important;
+	border-color:#2962FF !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(3) button
+{
+	background-color:#00C853 !important;
+	border-color:#00C853 !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(4) button
+{
+	background-color:#E65100 !important;
+	border-color:#E65100 !important;
+}
+
+
+div.visual-bbox-bar:nth-child(5) button
+{
+	background-color:#C51162 !important;
+	border-color:#C51162 !important;
+}
+
+
+div.visual-bbox-bar:nth-child(6) button
+{
+	background-color:#3D5AFE !important;
+	border-color:#3D5AFE !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(7) button
+{
+	background-color:#00BFA5 !important;
+	border-color:#00BFA5 !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(8) button
+{
+	background-color:#FFD600 !important;
+	border-color:#FFD600 !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(9) button
+{
+	background-color:#3E2723 !important;
+	border-color:#3E2723 !important;
+}
+
+
+
+div.visual-bbox-bar:nth-child(10) button
+{
+	background-color:#263238 !important;
+	border-color:#263238 !important;
+}
+
+div.visual-bbox-bar circle[type='1']
+{
+	fill:#007bff;
+}
+
+div.visual-bbox-bar circle[type='2']
+{
+	fill:#28a745;
+}
+
+div.visual-bbox-bar circle.active
+{
+	fill: red !important;
 }
 
 div.visual-bbox-bar circle.current
@@ -36,4 +136,149 @@ div.visual-bbox-bar:last-child
 	margin-bottom: 0 !important;
 	padding-bottom: 0 !important;
 	border-bottom: 0 !important;
+}
+
+#visual-video-canvas circle
+{
+	cursor: pointer;
+}
+
+#visual-video-canvas circle:hover
+{
+	fill: red !important;
+}
+
+#visual-video-canvas rect:not(.ghost), #visual-video-canvas polygon
+{
+	opacity:0.5;
+	cursor: pointer;
+	/*fill: red;*/
+}
+
+#visual-video-canvas rect:not(.ghost):hover
+{
+	stroke-width: 5;
+}
+
+#visual-video-canvas rect.active
+{	
+	stroke-width: 5;
+}
+
+#visual-video-canvas rect.ghost
+{
+  	stroke-dasharray: 3;	
+	cursor: pointer;
+  	opacity:0.5 !important;
+}
+
+#visual-video-canvas circle.marked
+{
+	/*fill:yellow !important;*/
+	/*stroke:black !important;*/
+}
+
+#visual-video-canvas circle[hide='1']
+{
+  	stroke-dasharray: 2;		
+	fill:transparent;
+
+}
+
+
+#visual-video-canvas circle[hide='1'][temp='true']
+{
+  	stroke-dasharray: 2;		
+	fill:transparent;
+	opacity:0.5 !important;
+	display:none !important;
+
+}
+
+#visual-video-canvas:hover rect
+{
+	opacity: 0.5 !important;
+}
+
+#visual-bbox-timeline
+{
+	overflow:hidden;
+	overflow-y:auto;
+	max-height:600px;
+
+}
+
+
+div.module[meta='POSE'][module='visual/overlay'] .visual-bbox-hide
+{
+	display:none;
+}
+
+
+
+
+#visual-video-canvas line.skeleton
+{
+	stroke:white;
+	stroke-width:2;
+}
+
+
+
+#visual-video-canvas line[index='1-5'].skeleton, #visual-video-canvas line[index='5-6'].skeleton, #visual-video-canvas line[index='6-7'].skeleton
+{
+	stroke:pink;
+}
+
+#visual-video-canvas line[index='0-15'].skeleton, #visual-video-canvas line[index='15-17'].skeleton
+{
+	stroke:red;
+}
+
+#visual-video-canvas line[index='1-11'].skeleton, #visual-video-canvas line[index='11-12'].skeleton, #visual-video-canvas line[index='12-13'].skeleton
+{
+	stroke:orange;
+}
+
+
+#visual-video-canvas line[index='1-2'].skeleton, #visual-video-canvas line[index='2-3'].skeleton, #visual-video-canvas line[index='3-4'].skeleton
+{
+	stroke:skyblue;
+}
+
+#visual-video-canvas line[index='0-14'].skeleton, #visual-video-canvas line[index='14-16'].skeleton
+{
+	stroke:blue;
+
+}
+
+#visual-video-canvas line[index='1-8'].skeleton, #visual-video-canvas line[index='8-9'].skeleton, #visual-video-canvas line[index='9-10'].skeleton
+{
+	stroke:green;
+
+}
+
+.visual-bbox-reset
+{
+	display:none;
+}
+
+div.module[meta='POSE'][module='visual/overlay'] .visual-bbox-reset
+{
+	display:inline-block;
+}
+
+div.module[meta='POSE'][module='visual/overlay'] .visual-bbox-create-range
+{
+	display:none;
+}
+
+#visual-video-canvas line.ghost, #visual-video-canvas circle.ghost
+{
+	/*opacity:0;*/
+}
+
+#visual-video-canvas:hover line.ghost, #visual-video-canvas:hover circle.ghost
+{
+	/*opacity:0.5;*/
 }

@@ -19,9 +19,24 @@
 	}
 
 
+	if (!isset($_POST["span"])) {
 
-    $stmt = $conn->prepare("INSERT INTO INTERACTIONS (DESCRIPTION, ACTOR_ID_0, ACTOR_ID_1, `ORDER`, DIRECTION, TYPE) VALUES ('', $actor0, $actor1, $order, $direction, $type)");
-    $stmt->execute();
+	    $stmt = $conn->prepare("INSERT INTO INTERACTIONS (DESCRIPTION, ACTOR_ID_0, ACTOR_ID_1, `ORDER`, DIRECTION, TYPE) VALUES ('', $actor0, $actor1, $order, $direction, $type)");
+
+	    $stmt->execute();
+
+	} else {
+
+		$length = $_POST["length"];
+
+	    $stmt = $conn->prepare("INSERT INTO INTERACTIONS (DESCRIPTION, ACTOR_ID_0, ACTOR_ID_1, `ORDER`, DIRECTION, TYPE, LENGTH) VALUES ('', $actor0, $actor1, $order, $direction, $type, $length)");
+
+	    $stmt->execute();
+
+
+	}
+
+
 
 
     $conn->close();

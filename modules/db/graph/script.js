@@ -129,8 +129,19 @@ trigger.cwcGraph = function(){
 
 							}
 
+							if (cwcDataList[id].ACTOR_META == null ){
 
-							if (x != $(this).attr("cx") || y != $(this).attr("cy") || id+": "+cwcDataList[id].ACTOR_NAME != $(name+" text[index='"+id+"'].label").text() || cwcDataList[id].SELECTED != $(this).attr("active")) {
+								cwcDataList[id].ACTOR_META = "";
+
+							} else {
+
+								// cwcDataList[id].ACTOR_META = "";
+								// cwcDataList[id].ACTOR_META = "-"+cwcDataList[id].ACTOR_META;
+
+							}
+
+
+							if (x != $(this).attr("cx") || y != $(this).attr("cy") || id+": "+cwcDataList[id].ACTOR_NAME != $(name+" text[index='"+id+"'].label").text() || cwcDataList[id].SELECTED != $(this).attr("active") || cwcDataList[id].ASSET_NAME != $(this).attr("asset")) {
 
 								$(this).attr("cx", x).attr("cy", y);
 								$(name+" rect[index='"+id+"']").attr("x", x-15).attr("y", y-15);								
@@ -138,8 +149,8 @@ trigger.cwcGraph = function(){
 								$(name+" text[index='"+id+"'] tspan").attr("x", x);
 								$(name+" text[index='"+id+"'].label").text(id+": "+cwcDataList[id].ACTOR_NAME);
 								
-								$(this).attr("cx", x).attr("active", cwcDataList[id].SELECTED);
-								$(name+" rect[index='"+id+"']").attr("active", cwcDataList[id].SELECTED);
+								$(this).attr("cx", x).attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME);
+								$(name+" rect[index='"+id+"']").attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME);
 
 
 								if ($(name+" line[index='"+id+"']").length > 0) {
@@ -182,30 +193,36 @@ trigger.cwcGraph = function(){
 								var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
 
 
+								var attributes = "Orientation: "+cwcDataList[id].RZ;
+								var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
+
+
 								text.appendChild(tline);
 
 
 								if (cwcData["ATTRIBUTES"][id] != undefined) {
 
 
-										var attributes = "Attributes: "+Object.keys(cwcData["ATTRIBUTES"][id]).length;
-										var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
+									var attributes = "Attributes: "+Object.keys(cwcData["ATTRIBUTES"][id]).length;
+									var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
 
-										text.appendChild(tline);
+									text.appendChild(tline);
 
-
-									// $.each(cwcData["ATTRIBUTES"][id], function(i,o){
-
-									// 	var attributes = o["LABEL"]+": "+o["VALUE"]+" ("+o["ATTRIBUTE_TYPE_NAME"]+")";
-									// 	var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: o.ATTRIBUTE_ID}, attributes);
-
-									// 	text.appendChild(tline);
-
-									// });
 
 								} else {
 
 									
+								}
+
+								if (cwcDataList[id].ACTOR_META != "") {
+
+
+									var attributes = "Meta: "+cwcDataList[id].ACTOR_META;
+									var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
+
+									text.appendChild(tline);
+
+
 								}
 
 
@@ -267,10 +284,10 @@ trigger.cwcGraph = function(){
 
 						if (type == "ACTION" || type == "POSITION") {
 
-							var rect = cwcGraphMakeSVG("rect", {x: x-15, y: y-15, width: 30, height: 30, "stroke-width": 1, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED});
+							var rect = cwcGraphMakeSVG("rect", {x: x-15, y: y-15, width: 30, height: 30, "stroke-width": 1, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED, asset: o.ASSET_NAME});
 							canvas.appendChild(rect);			
 
-							var circle = cwcGraphMakeSVG("circle", {cx: x, cy: y, fill: "transparent", "stroke-width": 0, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED});
+							var circle = cwcGraphMakeSVG("circle", {cx: x, cy: y, fill: "transparent", "stroke-width": 0, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED, asset: o.ASSET_NAME});
 							canvas.appendChild(circle);
 
 
@@ -288,7 +305,7 @@ trigger.cwcGraph = function(){
 
 							}
 
-							var circle = cwcGraphMakeSVG("circle", {cx: x, cy: y, "stroke-width": 1, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED});
+							var circle = cwcGraphMakeSVG("circle", {cx: x, cy: y, "stroke-width": 1, "stroke": "#000", index: o.ACTOR_ID, type: type, active: o.SELECTED, asset: o.ASSET_NAME});
 							canvas.appendChild(circle);
 
 
@@ -430,7 +447,7 @@ trigger.cwcGraph = function(){
 
 								if (x1 != undefined && x2 != undefined && y1 != undefined && y2 != undefined) {
 
-									var path = cwcGraphMakeSVG("polyline", {points: x1+", "+y1+" "+mx+", "+my+" "+x2+", "+y2, index: o.INTERACTION_ID, actor0: o.ACTOR_ID_0, actor1: o.ACTOR_ID_1, stroke: "#ccc", "stroke-width": 2, direction: o.DIRECTION});
+									var path = cwcGraphMakeSVG("polyline", {points: x1+", "+y1+" "+mx+", "+my+" "+x2+", "+y2, index: o.INTERACTION_ID, actor0: o.ACTOR_ID_0, actor1: o.ACTOR_ID_1, type: o.TYPE, stroke: "#ccc", "stroke-width": 2, direction: o.DIRECTION});
 									canvas.prepend(path);			
 
 
@@ -481,10 +498,14 @@ poll.cwcListener = function(){
 
 		$("#cwc_listener_log").attr("loading", "true");
 
+		var meta = $("div[module='db/graph']").attr("meta");
+
+
 		$.ajax({
 			url: "/modules/db/graph/poll.php",
 			data:{
-				session: session_id
+				session: session_id,
+				meta: meta
 			},
 			success: function(data){
 
@@ -740,19 +761,28 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
 $(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e){
 
+	if ($("div.module[module='db/event'], div.module[module='db/relationship'], div.module[module='db/connection']").length == 0) {
+
+		return false;
+
+	}
+
 	var index = $(this).attr("index");
 	var type = $(this).attr("type");
 	var label = $("#cwc_graph_svg_conceptual text.label[index='"+index+"']").text();
 
 	var lines = $("#cwc_graph_svg_conceptual polyline[actor0='"+index+"'], #cwc_graph_svg_conceptual polyline[actor1='"+index+"']").length;
 
-	if (type == "ACTION") {
+	var override = false;
+
+	if (type == "ACTION" && $("div.module[module='db/graph']").attr("meta") != "FREEFORM") {
 
 		if (label.indexOf("Walking") > -1) {
 
 			if (lines == 2) {
 
-				alert("This walking ACTION node has preexisting connections to two other nodes.");
+				override = true;
+				// alert("This walking ACTION node has preexisting connections to two other nodes.");
 				return false;
 
 			}
@@ -761,8 +791,11 @@ $(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e)
 
 			if (lines > 0) {
 
-				alert("This ACTION node has a preexisting connection to another node.");
-				return false;
+				override = true;
+				// alert("This ACTION node has a preexisting connection to another node.");
+				// return false;
+
+
 
 			}
 
@@ -782,7 +815,7 @@ $(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e)
 
 	if ($("#cwc_graph_svg_conceptual circle[index].active").length == 2) {
 
-		cwcProcessActive();
+		cwcProcessActive(override);
 		$("#cwc_graph_svg_conceptual *[index]").removeClass("active");
 		$("#cwc_graph_prompt").hide();
 
@@ -809,9 +842,34 @@ $(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e)
 
 			} else {
 
-				$("#cwc_graph_svg_conceptual *[index]").removeClass("active");
-				alert("Start with a CHARACTER.");
-				return false;
+
+				if ($("div.module[module='visual/overlay']").length > 0) {
+
+					$("html,body").animate({scrollTop: $("div[module='visual/overlay']").offset().top});
+					return false;
+
+				} else {
+
+					$("#cwc_graph_svg_conceptual *[index]").removeClass("active");
+
+					if ($("div.module[module='db/graph']").attr("meta") == "FREEFORM") {
+
+						alert("Start with a CHARACTER or a PROP.");
+
+					} else {
+
+						alert("Start with a CHARACTER.");
+
+					}
+
+					return false;
+
+				}
+
+				// override = true;
+
+
+
 		//		$("#cwc_graph_prompt").text("Double click a CHARACTER.");
 
 			}
@@ -844,7 +902,7 @@ $(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e)
 });
 
 
-function cwcProcessActive(){
+function cwcProcessActive(override){
 
 	var array = [];
 	var arrayIndex = [];
@@ -926,10 +984,13 @@ function cwcProcessActive(){
 		type = 1;
 		order = $("#cwc_event_list tr:not(.timeline_row)").length+1;	
 
-		if ($("#cwc_graph_svg_conceptual text[index='"+actor1+"']").text().indexOf("Walking") == -1) {
 
-			alert("Invalid selection.");
-			return false;
+
+
+		if ($("#cwc_graph_svg_conceptual text[index='"+actor1+"']").text().indexOf("Walking") == -1  && $("div.module[module='db/graph']").attr("meta") != "FREEFORM") {
+
+			//alert("Invalid selection.");
+			// return false;
 
 		}
 
@@ -964,11 +1025,13 @@ function cwcProcessActive(){
 
 			actor0 = arrayIndex[0];
 			actor1 = arrayIndex[1];
+			direction = 0;
 
 		} else {
 
 			actor0 = arrayIndex[1];
 			actor1 = arrayIndex[0];
+			direction = 1;
 
 		}
 
@@ -992,11 +1055,13 @@ function cwcProcessActive(){
 
 			actor0 = arrayIndex[0];
 			actor1 = arrayIndex[1];
+			direction = 1;
 
 		} else {
 
 			actor0 = arrayIndex[1];
 			actor1 = arrayIndex[0];
+			direction = 0;
 
 		}
 
@@ -1015,11 +1080,58 @@ function cwcProcessActive(){
 
 	} else {
 
-		alert("Invalid selection.");
+		// alert("Invalid selection.");
+
+		actor0 = arrayIndex[0];
+		actor1 = arrayIndex[1];
+		type = 3;
+		direction = 2;
+		order = $("#cwc_connection_list tr").length+1;	
+
+		// alert("GENERIC");
+		// alert(actor0);
+		// alert(actor1);
 
 	}
 
 	if (actor0 != null && actor1 != null) {
+
+		if (override == true) {
+
+			order = 1;
+			type = 3;
+			direction = 2;
+
+			order = $("#cwc_connection_list tr").length+1;	
+
+
+		}
+
+		var obj = {
+			actor0: actor0,
+			actor1: actor1,
+			type: type,
+			order: order,
+			direction: direction
+		}
+
+		if (type == 1 && ($("div.module[module='visual/overlay']").length > 0 || $("div.module[module='db/event']").attr("meta") == "FREEZE")) {
+
+
+			obj.span = true;
+			obj.length = parseInt($("#visual-video-timeline").attr("max"));
+			obj.order = 1;
+
+		}
+
+
+		if ($("div.module[module='db/graph']").attr("meta") == "FREEFORM") {
+
+			obj.direction = 2;
+			obj.type = 3;
+
+		}
+
 
 		if ($("#cwc_graph_svg_conceptual polyline[actor0='"+actor0+"'][actor1='"+actor1+"']").length > 0) {
 
@@ -1033,13 +1145,7 @@ function cwcProcessActive(){
 			$.ajax({
 				url: "/modules/db/graph/add_interaction.php",
 				type: "POST",
-				data: {
-					actor0: actor0,
-					actor1: actor1,
-					type: type,
-					order: order,
-					direction: direction
-				},		
+				data: obj,		
 				success: function(data){
 
 					$.each(poll, function(i,o){

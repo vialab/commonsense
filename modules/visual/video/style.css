@@ -1,0 +1,50 @@
+#visual-video-dots
+{
+	height:10px;
+	overflow:visible;
+}
+
+
+#visual-video-dots
+{
+    /*width: calc(100% - 10px) !important;*/
+    /*margin-left: 5px;	*/
+	/*transition: all 0.5s ease;*/
+}
+
+#layout:hover #visual-video-dots:hover
+{
+	/*transform: scale(3);*/
+}
+
+.module[module='visual/video']
+{
+/*	transition: all 0.25s ease;
+	z-index: 100;*/
+}
+
+.module[module='visual/video']:hover
+{
+	/*transform: scale(1.25);*/
+}
+
+#visual-video-dots circle
+{
+	cursor: pointer
+}
+
+#visual-video-dots circle.active
+{
+	fill:red !important;
+}
+
+#visual-video-frame
+{
+	width:100px !important;
+}
+
+.module[module='visual/video'] button, .module[module='visual/video'] button i
+{
+	pointer-events: all !important;
+	opacity: 1 !important;
+}

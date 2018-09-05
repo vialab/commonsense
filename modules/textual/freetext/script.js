@@ -2,13 +2,34 @@ callback.textualFreetext = function(){
 
 	var freetext = "";
 
-	if (input.freetext != undefined) {
+	var obj = {};
 
-		freetext = input.freetext;
+	obj.session = session_id;
 
-	}
+	var meta = $("div[module='textual/freetext']").attr("meta");
 
-	$("#textual-freetext-textarea").val(freetext);
+	obj.meta = meta;
+
+	$.ajax({
+		url: "/modules/textual/freetext/load.php",
+		type: "GET",
+		data: obj,		
+		success: function(data){
+
+
+			data = JSON.parse(data);
+
+			$("#textual-freetext-textarea").val(data.CONTENT);
+
+			if ((data.CONTENT === undefined || data.CONTENT === "") && session_id == 'SAMPLE' && extra_id != "") {
+			
+				$("#textual-freetext-textarea").val(extra_id);
+
+			}
+
+		}
+	});
+
 
 }
 
@@ -20,10 +41,29 @@ $(document).on("change", "#textual-freetext-textarea", function(){
 
 $(document).on("click", "#textual-freetext-save", function(){
 
-	input.freetext = $("#textual-freetext-textarea").val();
-	$("#textual-freetext-textarea").addClass("animated rubberBand");
+	var obj = {};
 
-	save();
+	obj.text = $("#textual-freetext-textarea").val();
+	obj.session = session_id;
+
+	var meta = $("div[module='textual/freetext']").attr("meta");
+
+	obj.meta = meta;
+
+	$.ajax({
+		url: "/modules/textual/freetext/upload.php",
+		type: "POST",
+		data: obj,		
+		success: function(data){
+
+			$("#textual-freetext-textarea").addClass("animated rubberBand");			
+
+		}
+	});
+
+
+
+	// save();
 
 
 });
@@ -61,7 +101,7 @@ $(document).on("click", "#textual-freetext-add", function(){
         $("a[href='#textual-bin-freetext']").click();
 
 
-		relationalSummaryInsert(text, "textual");
+		//relationalSummaryInsert(text, "textual");
 
     }	
 

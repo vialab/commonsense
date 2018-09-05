@@ -356,7 +356,7 @@ $(document).on("click", "i.cwc_relationship_cycle", function(e){
 
 	} else if (nameDOM.find("i.fa-chevron-left").length > 0) {
 
-		var direction = 2;
+		var direction = 0;
 
 	}
 

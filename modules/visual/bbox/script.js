@@ -119,65 +119,65 @@ $(document).on("click", ".visual-bbox-remove", function(){
 });
 
 
-$(document).on("keyup", function(e){
+// $(document).on("keyup", function(e){
 
-	return false;
+// 	return false;
 
-	if ($("input[type='text']:focus").length > 0) {
+// 	if ($("input[type='text']:focus").length > 0) {
 
-		return false;
+// 		return false;
 
-	}
+// 	}
 
-	if (e.which == 81) {
+// 	if (e.which == 81) {
 
-		var pane = document.getElementById("visual-video-pane");
+// 		var pane = document.getElementById("visual-video-pane");
 
-		if (pane.paused == true) {
+// 		if (pane.paused == true) {
 
-			pane.play();
+// 			pane.play();
 
-		} else {
+// 		} else {
 
-			pane.pause();
+// 			pane.pause();
 
-		}
+// 		}
 
-	} else if (e.which == 87) {
+// 	} else if (e.which == 87) {
 
-		var pane = document.getElementById("visual-video-pane");
+// 		var pane = document.getElementById("visual-video-pane");
 
-		pane.pause();
+// 		pane.pause();
 
-		var value = parseFloat($("#visual-video-timeline").val());
+// 		var value = parseFloat($("#visual-video-timeline").val());
 
-		value -= 0.1;
+// 		value -= 0.1;
 
-		$("#visual-video-timeline").val(value).trigger("input");
+// 		$("#visual-video-timeline").val(value).trigger("input");
 
-	} else if (e.which == 69) {
+// 	} else if (e.which == 69) {
 
-		var pane = document.getElementById("visual-video-pane");
+// 		var pane = document.getElementById("visual-video-pane");
 
-		pane.pause();
+// 		pane.pause();
 
-		var value = parseFloat($("#visual-video-timeline").val());
+// 		var value = parseFloat($("#visual-video-timeline").val());
 
-		value += 0.1;
+// 		value += 0.1;
 
-		$("#visual-video-timeline").val(value).trigger("input");
+// 		$("#visual-video-timeline").val(value).trigger("input");
 
-	} else {
-
-
-		var number = e.which - 49;
-		$("div.visual-bbox-bar:eq("+number+")").find("button.visual-bbox-insert").click();
+// 	} else {
 
 
-	}
+// 		var number = e.which - 49;
+// 		$("div.visual-bbox-bar:eq("+number+")").find("button.visual-bbox-insert").click();
 
 
-});
+// 	}
+
+
+// });
 
 $(document).on("click", ".visual-bbox-hide", function(){
 

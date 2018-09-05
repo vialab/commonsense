@@ -7,6 +7,27 @@
 	$id = $_POST["id"];
 
 
+    $query = "SELECT * FROM ACTORS WHERE ACTOR_ID = $id AND EXT_ID IS NOT NULL";
+    $result = $conn->query($query);            
+
+    if ($result->num_rows > 0) {
+
+        while ($row = $result->fetch_object()){
+            $item = $row;
+        }
+
+        $ext_id = $item->EXT_ID;
+        $query = "DELETE FROM ACTORS WHERE EXT_ID = ?";
+
+        var_dump($ext_id);
+        var_dump($query);
+
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('s', $ext_id);
+        $stmt->execute();
+
+    }
+
     $stmt = $conn->prepare("DELETE FROM ACTORS WHERE ACTOR_ID = ?");
     $stmt->bind_param('i', $id);
     $stmt->execute();

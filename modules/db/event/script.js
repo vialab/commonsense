@@ -168,51 +168,78 @@ poll.cwcEvent = function(){
 
 						}
 
+						var blockWidth = cwcSequenceWidth+"px";
+						var grid = [cwcSequenceWidth/4, 20];
 
-						$("#cwc_event_list").append('<tr data-db="'+o.INTERACTION_ID+'"><th scope="row">'+o.INTERACTION_ID+'</th><!--<td class="order"><span>'+o.ORDER+'</span></td>--><td class="actor w-50"><i class="fa fa-user text-dark cwc_event_assign" column="ACTOR_ID_0"></i> <span class="actor0">'+o.ACTOR_NAME_0+'</span><br><i class="fa fa-walking text-dark cwc_event_assign" column="ACTOR_ID_1"></i> <span class="actor1">'+o.ACTOR_NAME_1+'</span></td><td class="description">'+o.DESCRIPTION+'</td><td class="direction">'+o.DIRECTION+'</td><td class="text-right w-25"><i class="fa fa-pencil-alt text-primary cwc_event_description"></i> <i class="fa fa-sync text-primary cwc_event_cycle"></i> <i class="fa fa-times text-danger cwc_event_remove"></i></td></tr><tr class="timeline_row"><td colspan="5" class="timeline"><div class="progress cwc_sequence_block_parent mb-0" data-db="'+o.INTERACTION_ID+'"><div class="progress-bar cwc_sequence_block" role="progressbar" style="width: '+cwcSequenceWidth+'px"><!--'+o.ACTOR_NAME_0+" "+o.ACTOR_NAME_1+'--></div></div></td></tr>');
+						if (o.LENGTH != null) {
 
+							blockWidth = (o.LENGTH / parseInt($("#visual-video-timeline").attr("max")) * 100) + "%";
+							grid = [1];
 
+						}
 
+						$("#cwc_event_list").append('<tr data-db="'+o.INTERACTION_ID+'"><th scope="row">'+o.INTERACTION_ID+'</th><!--<td class="order"><span>'+o.ORDER+'</span></td>--><td class="actor w-50"><i class="fa fa-user text-dark cwc_event_assign" column="ACTOR_ID_0"></i> <span class="actor0">'+o.ACTOR_NAME_0+'</span><br><i class="fa fa-walking text-dark cwc_event_assign" column="ACTOR_ID_1"></i> <span class="actor1">'+o.ACTOR_NAME_1+'</span></td><td class="description">'+o.DESCRIPTION+'</td><td class="direction">'+o.DIRECTION+'</td><td class="text-right w-25"><i class="fa fa-pencil-alt text-primary cwc_event_description"></i> <i class="fa fa-sync text-primary cwc_event_cycle"></i> <i class="fa fa-times text-danger cwc_event_remove"></i></td></tr><tr class="timeline_row"><td colspan="5" class="timeline"><div class="progress cwc_sequence_block_parent mb-0" data-db="'+o.INTERACTION_ID+'"><div class="progress-bar cwc_sequence_block" role="progressbar" style="width: '+blockWidth+'"><!--'+o.ACTOR_NAME_0+" "+o.ACTOR_NAME_1+'--></div></div></td></tr>');
 
-					    $( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).draggable({
-					    	grid: [ cwcSequenceWidth/4, 20 ],
-					    	axis: "x",
-					    	containment: ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"']",
-							cursor: "move",
-							stop: function( event, ui ) {
-
-
-								var left = parseFloat($( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).css("left").replace("px", ""));
-
-								var index = left / cwcSequenceWidth + 1;
+						var meta = $("div.module[module='db/event']").attr("meta");
 
 
-								var db = o.INTERACTION_ID;
-
-								$.ajax({
-									url: "/modules/db/sequence/update.php",
-									type: "POST",
-									data: {
-										db: db,
-										index: index,
-									},			
-									success: function(data){
+						if (meta != "FREEZE") {
 
 
-
-									}
-								});
-
-
-
-							}
-					    });	
+						    $( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).draggable({
+						    	grid: grid,
+						    	axis: "x",
+						    	containment: ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"']",
+								cursor: "move",
+								stop: function( event, ui ) {
 
 
-					    var offset = (o.ORDER - 1) * cwcSequenceWidth;
+									var left = parseFloat($( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).css("left").replace("px", ""));
 
-					    $( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).css("left", offset+"px");
+									var index = left / cwcSequenceWidth + 1;
 
+									var db = o.INTERACTION_ID;
+
+									$.ajax({
+										url: "/modules/db/sequence/update.php",
+										type: "POST",
+										data: {
+											db: db,
+											index: index,
+										},			
+										success: function(data){
+
+
+
+										}
+									});
+
+
+
+								}
+						    });	
+
+
+						    var offset = (o.ORDER - 1) * cwcSequenceWidth;
+
+						    $( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).css("left", offset+"px");
+
+						} else {
+
+
+							// blockWidth = 
+							// grid = [1];
+
+						    var offset = (o.ORDER / parseInt($("#visual-video-timeline").attr("max")) * 100) + "%";
+
+						    // alert(offset);
+						    // alert(blockWidth);
+
+						    $( ".cwc_sequence_block_parent[data-db='"+o.INTERACTION_ID+"'] .cwc_sequence_block" ).css("margin-left", offset);
+
+
+
+						}
 
 
 					}
