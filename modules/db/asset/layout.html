@@ -1,84 +1,231 @@
-<div class="card">
+<div class="card" id="cwc_actor_card">
 	<div class="card-header bg-dark text-white">
 		<i class="fa fa-th"></i> Actors, Actions, Props, and Position
 	</div>
 
 
-	<nav class="nav nav-pills nav-justified" id="cwc_asset_mode">
-	  <a data-db="18389" data-label="Character" class="nav-item nav-link py-1" data-type="1" href="#"><i class="fa fa-user"></i><!--<br><small class="line-height:1">Character</small>--></a>
-	  <a data-db="18391" data-label="Action" class="nav-item nav-link py-1" data-type="3" href="#"><i class="fa fa-walking"></i><!--<br><small class="line-height:1">Action</small>--></a>
-	  <a data-db="18390" data-label="Prop" class="nav-item nav-link py-1" data-type="2" href="#"><i class="fa fa-tree"></i><!--<br><small class="line-height:1">Prop</small>--></a>
-	  <a data-db="18392" data-label="Position" class="nav-item nav-link py-1" data-type="4" href="#"><i class="fa fa-map-marker-alt"></i><!--<br><small class="line-height:1">Position</small>--></a>
-	  <a data-db="" data-label="Camera" class="nav-item nav-link py-1" data-type="5" href="#"><i class="fa fa-video"></i><!--<br><small class="line-height:1">Camera</small>--></a>
-	  <!-- <a class="nav-item nav-link py-1" data-type="6" href="#"><i class="fa fa-glasses"></i><br><small class="line-height:1">Attachment</small></a> -->
-	</nav>
+	<div id="cwc_actor_parent">
 
-	<div id="cwc_actor_container">
-
-		<table class="table table-sm mb-0" style="table-layout: fixed">
-		  <thead class="thead-dark">
-		    <tr>
-		      <th scope="col">&nbsp;</th>
-		      <th scope="col">Type</th>
-		      <th scope="col">Name</th>
-		      <th scope="col">RX</th>
-		      <th scope="col">RY</th>
-		      <th scope="col">&nbsp;</th>
-		    </tr>
-		  </thead>
-		  <tbody id="cwc_actor_list">
-
-		  </tbody>
-		</table>
-
-	</div>
-
-	<div class="alert alert-info rounded-0 text-center" id="cwc_asset_loading">Loading</div>
-
-	<div class="card-body border-top">
+		<nav class="nav nav-pills nav-justified" id="cwc_asset_mode">
+		  <a data-db="18389" data-label="Character" class="nav-item nav-link py-1" data-type="1" href="#"><i class="fa fa-user"></i><!--<br><small class="line-height:1">Character</small>--></a>
+		  <a data-db="18391" data-label="Action" class="nav-item nav-link py-1" data-type="3" href="#"><i class="fa fa-walking"></i><!--<br><small class="line-height:1">Action</small>--></a>
+		  <a data-db="18390" data-label="Prop" class="nav-item nav-link py-1" data-type="2" href="#"><i class="fa fa-tree"></i><!--<br><small class="line-height:1">Prop</small>--></a>
+		  <a data-db="18392" data-label="Position" class="nav-item nav-link py-1" data-type="4" href="#"><i class="fa fa-map-marker-alt"></i><!--<br><small class="line-height:1">Position</small>--></a>
+		  <a data-db="" data-label="Camera" class="nav-item nav-link py-1" data-type="5" href="#"><i class="fa fa-video"></i><!--<br><small class="line-height:1">Camera</small>--></a>
+		  <!-- <a class="nav-item nav-link py-1" data-type="6" href="#"><i class="fa fa-glasses"></i><br><small class="line-height:1">Attachment</small></a> -->
+		</nav>
 
 
+		<div id="cwc_actor_container">
 
-		<!--
-		<div id="textual-tag-scale" class="mb-2 w-100 py-2 bg-dark">
+			<table class="table table-sm mb-0" style="table-layout: fixed">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">&nbsp;</th>
+			      <th scope="col">Type</th>
+			      <th scope="col">Name</th>
+			      <th scope="col" class="modalhide">RX</th>
+			      <th scope="col" class="modalhide">RY</th>
+			      <th scope="col">&nbsp;</th>
+			    </tr>
+			  </thead>
+			  <tbody id="cwc_actor_list">
 
-			<input type="range" value="-120" min="-240" max="0" class="w-100 d-block">
-
-		</div>	
-		-->
-
-		<div class="btn-group btn-group-sm" role="group">
-
-
-		  <div class="btn-group" role="group">
-		    <button id="cwc_asset_dropdown_menu" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		      Add
-		    </button>
-		    <div class="dropdown-menu" aria-labelledby="cwc_asset_dropdown_menu">
-
-		    	<div class="px-2 pb-2 border-bottom">
-
-		    		<input type="text" class="form-control form-control-sm w-100 d-block" placeholder="Search" id="cwc_asset_search">
-
-		    	</div>
-
-		    	<div id="cwc_asset_list">
-
-
-		    	</div>
-
-		    </div>
-		  </div>
-			<button class="btn btn-danger btn-sm" type="button" id="cwc_asset_clear">Clear Assets</button>
-
-			<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_add">Add <strong></strong> From Text <span></span></button>
-
-			<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_new">Add New <strong></strong></button>
+			  </tbody>
+			</table>
 
 		</div>
 
+		<div class="alert alert-info rounded-0 text-center" id="cwc_asset_loading">Loading</div>
 
+		<div class="card-body border-top">
+
+
+
+			<!--
+			<div id="textual-tag-scale" class="mb-2 w-100 py-2 bg-dark">
+
+				<input type="range" value="-120" min="-240" max="0" class="w-100 d-block">
+
+			</div>	
+			-->
+
+
+
+			<div class="btn-group btn-group-sm" role="group">
+
+
+			  <div class="btn-group" role="group">
+			    <button id="cwc_asset_dropdown_menu" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			      Add
+			    </button>
+			    <div class="dropdown-menu" aria-labelledby="cwc_asset_dropdown_menu">
+
+			    	<div class="px-2 pb-2 border-bottom">
+
+			    		<input type="text" class="form-control form-control-sm w-100 d-block" placeholder="Search" id="cwc_asset_search">
+
+			    	</div>
+
+			    	<div id="cwc_asset_list">
+
+
+			    	</div>
+
+			    </div>
+			  </div>
+
+			    <button id="cwc_asset_resolve" type="button" class="btn btn-primary btn-sm">
+			      Resolve
+			    </button>
+
+
+				<!-- <button class="btn btn-danger btn-sm" type="button" id="cwc_asset_clear">Clear Assets</button> -->
+
+				<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_add">Add <strong></strong> From Text <span></span></button>
+
+				<button class="btn btn-secondary btn-sm" type="button" id="cwc_asset_new">Add New <strong></strong></button>
+
+			</div>
+
+
+
+
+
+		</div>
 
 	</div>
 
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="cwc_asset_resolve_modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Node Resolution</h5>
+<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+
+      	<div class="row">
+
+      		<div class="col-12 mb-3">
+
+
+		      	<h6>You have chosen to resolve the following nodes:</h6>
+
+		      	<ul id="cwc_asset_resolve_nodes">
+
+		      	</ul>
+
+		      	<div class="alert alert-success text-center" id="cwc_asset_resolve_loaded">Previous resolution data detected!</div>
+
+		      	<table class="table table-sm" id="cwc_asset_resolve_detected_table">
+
+		      		<thead>
+		      			<thead>
+		      				<tr>
+		      					<th>ID</th>
+		      					<th>Actors</th>
+		      					<th>Edges</th>
+		      					<th></th>
+		      				</tr>
+		      			</thead>
+		      			<tbody id="cwc_asset_resolve_rows">
+
+
+		      			</tbody>
+		      		</thead>
+
+		      	</table>
+
+		      	<h6>Choose one or more nodes that you wish to resolve the above nodes to:</h6>
+
+      		</div>
+
+      		<div class="col-6">
+
+
+		      	<div id="cwc_asset_resolve_asset_placeholder" class="position-relative">
+
+
+		      	</div>
+
+
+      		</div>
+      		<div class="col-6">
+
+
+		      	<div id="cwc_asset_resolve_placeholder" class="position-relative">
+
+
+		      	</div>
+
+
+		      	<table class="table hidden" id="cwc_asset_resolve_table">
+
+		      		<thead>
+		      			<tr>
+			      			<th>Type</th>
+			      			<th>Asset</th>
+			      			<th>Name</th>
+			      			<th></th>
+		      			</tr>
+		      		</thead>
+
+		      		<tbody>
+		      			<tr class="actor">
+			      			<td>
+			      				<select class="form-control-sm cwc_asset_resolve_select_type w-100">
+			      					<option value="">(Select one)</option>
+			      					<option value="1">Actor</option>
+			      					<option value="3">Action</option>
+			      					<option value="2">Prop</option>
+			      					<option value="4">Position</option>
+			      					<!-- <option value="5">Actor</option> -->
+			      				</select>
+			      			</td>
+			      			<td>
+			      				<select class="form-control-sm cwc_asset_resolve_select_asset w-100">
+			      					<option value="">(Empty)</option>
+			      				</select>
+			      			</td>
+			      			<td>
+								<input type="text" class="form-control-sm">
+			      			</td> 
+			      			<td class="text-right">
+						      	<button class="btn btn-danger btn-sm cwc_asset_resolve_remove"><i class="fa fa-times fa-fw"></i></button>
+			      			</td> 	      			   
+		      			</tr>
+		      			<tr class="interaction" direction="2">
+			      			<td colspan="3">
+
+								<i class="fa fa-2x text-muted fa-arrows-alt-v"></i>
+
+			      			</td> 	 
+			      			<td class="text-right">
+						      	<button class="btn btn-primary btn-sm cwc_asset_resolve_direction"><i class="fa fa-sync fa-fw"></i></button>
+			      			</td> 	      			     			   
+		      			</tr>  	      			  			
+		      		</tbody>
+
+		      	</table>
+
+		      	<button class="btn btn-secondary btn-sm hidden" id="cwc_asset_resolve_addmore">Add More</button>
+
+
+      		</div>
+
+      	</div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="cwc_asset_resolve_discard">Discard</button>
+        <button type="button" class="btn btn-primary" id="cwc_asset_resolve_save">Commit</button>
+      </div>
+    </div>
+  </div>
 </div>

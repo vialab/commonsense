@@ -84,6 +84,11 @@ div.module[module='db/graph'][meta='FREEFORM'] #cwc_graph_svg_toggle
 	/*fill: red;*/
 }
 
+.cwc_graph_svg_top circle.groupactive, .cwc_graph_svg_top rect.groupactive
+{
+	fill: orange;
+}
+
 .cwc_graph_svg_top circle
 {
 	cursor: pointer;
@@ -139,7 +144,7 @@ div.module[module='db/graph'][meta='FREEFORM'] #cwc_graph_svg_toggle
 	width:100%;
 	left:0;
 	display:none;
-	z-index: 1000;
+	z-index: 2000;
 }
 
 .cwc_graph_svg_top polyline[direction='0']
@@ -164,4 +169,10 @@ div.module[module='db/graph'][meta='FREEFORM'] #cwc_graph_svg_toggle
 .cwc_graph_svg_top *[asset='Generic']
 {	
 	fill: lightyellow;
+}
+
+#cwc_graph_resolve
+{
+	display:none;
+	z-index: 1001;
 }

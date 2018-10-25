@@ -38,7 +38,6 @@ $(document).on("click", "#cwc_graph_svg_toggle a", function(e){
 
 trigger.cwcGraph = function(){
 
-
 	var stages = ["#cwc_graph_svg_conceptual", "#cwc_graph_svg_stage", "#cwc_graph_svg_elevation"];
 
 
@@ -62,6 +61,26 @@ trigger.cwcGraph = function(){
 			var type = o;
 
 			var cwcDataList = cwcData["ACTORS"][o];
+
+
+
+			$(name+" polyline[index]").each(function(){
+
+
+				var a0 = $(this).attr("actor0");
+				var a1 = $(this).attr("actor1");
+
+				if ($(name+" circle[index='"+a0+"'], "+name+" circle[index='"+a1+"']").length != 2) {
+
+
+					$(this).remove();
+					
+				}
+
+
+
+			});
+
 
 
 
@@ -141,7 +160,7 @@ trigger.cwcGraph = function(){
 							}
 
 
-							if (x != $(this).attr("cx") || y != $(this).attr("cy") || id+": "+cwcDataList[id].ACTOR_NAME != $(name+" text[index='"+id+"'].label").text() || cwcDataList[id].SELECTED != $(this).attr("active") || cwcDataList[id].ASSET_NAME != $(this).attr("asset")) {
+							if (x != $(this).attr("cx") || y != $(this).attr("cy") || id+": "+cwcDataList[id].ACTOR_NAME != $(name+" text[index='"+id+"'].label").text() || cwcDataList[id].SELECTED != $(this).attr("active") || cwcDataList[id].ASSET_NAME != $(this).attr("asset") || cwcDataList[id].ACTOR_GROUP != $(this).attr("group")) {
 
 								$(this).attr("cx", x).attr("cy", y);
 								$(name+" rect[index='"+id+"']").attr("x", x-15).attr("y", y-15);								
@@ -149,8 +168,8 @@ trigger.cwcGraph = function(){
 								$(name+" text[index='"+id+"'] tspan").attr("x", x);
 								$(name+" text[index='"+id+"'].label").text(id+": "+cwcDataList[id].ACTOR_NAME);
 								
-								$(this).attr("cx", x).attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME);
-								$(name+" rect[index='"+id+"']").attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME);
+								$(this).attr("cx", x).attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME).attr("group", cwcDataList[id].ACTOR_GROUP);
+								$(name+" rect[index='"+id+"']").attr("active", cwcDataList[id].SELECTED).attr("asset", cwcDataList[id].ASSET_NAME).attr("group", cwcDataList[id].ACTOR_GROUP);
 
 
 								if ($(name+" line[index='"+id+"']").length > 0) {
@@ -226,6 +245,18 @@ trigger.cwcGraph = function(){
 								}
 
 
+								if (cwcDataList[id].ACTOR_GROUP != null && cwcDataList[id].ACTOR_GROUP != "") {
+
+
+									var attributes = "Group: "+cwcDataList[id].ACTOR_GROUP;
+									var tline = cwcGraphMakeSVG("tspan", {x: x, dy: "1.3em", index: id}, attributes);
+
+									text.appendChild(tline);
+
+
+								}								
+
+
 							}
 
 
@@ -241,6 +272,11 @@ trigger.cwcGraph = function(){
 
 				$.each(cwcDataList, function(i,o){
 
+					// if (o.ASSET_NAME == "Generic" && o.ACTOR_GROUP != null) {
+
+					// 	return true;
+
+					// }
 
 					if ($(name+" circle[index='"+o.ACTOR_ID+"']").length == 0) {
 
@@ -612,6 +648,7 @@ $(document).on("dblclick", "#cwc_graph_svg_elevation circle", function(e){
 
 $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
+
 	if (cwc_graph_active == true && cwc_graph_index != null && cwc_graph_id != null && cwc_graph_angle == false){
 
 		var cWidth = $(".cwc_graph_svg_top").outerWidth();
@@ -758,8 +795,54 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
 
 
+$(document).on("dblclick", ".cwc_graph_svg_top circle[asset='Generic']", function(e){
 
-$(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type]", function(e){
+
+	if ($("#cwc_asset_resolve_modal").hasClass("show")) {
+
+		return false;
+
+	}
+
+	$("#cwc_graph_prompt").hide();
+	$(".cwc_graph_svg_top circle[asset!='Generic']").removeClass("active");
+
+	var index = $(this).attr("index");
+	$("#cwc_graph_svg_conceptual rect[index='"+index+"'], #cwc_graph_svg_conceptual circle[index='"+index+"']").toggleClass("active");
+
+	$("#cwc_actor_list tr[data-db='"+index+"'] a.cwc_actor_swap").click();
+
+	if ($("#cwc_actor_list tr.swap").length == 0) {
+
+		$("#cwc_graph_resolve").hide();
+
+	} else if ($("#cwc_actor_list tr.swap").length == 1) {
+
+		$("#cwc_graph_resolve").show();
+
+	} else {
+
+		$("#cwc_graph_resolve").show();
+
+	}
+
+
+
+});
+
+$(document).on("click", "#cwc_graph_resolve", function(e){
+
+	$("#cwc_asset_resolve").click();
+
+});
+
+
+$(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type][asset!='Generic']", function(e){
+
+	$("#cwc_actor_list tr.swap").removeClass("swap");
+
+	$(".cwc_graph_svg_top circle[asset='Generic'], .cwc_graph_svg_top rect[asset='Generic']").removeClass("active");
+	$("#cwc_graph_resolve").hide();
 
 	if ($("div.module[module='db/event'], div.module[module='db/relationship'], div.module[module='db/connection']").length == 0) {
 
@@ -1181,10 +1264,30 @@ function cwcProcessActive(override){
 }
 
 
+$(document).on("mouseover", ".cwc_graph_svg_top circle[group]", function(e){
+
+	var group = $(this).attr("group");
+	//$(".cwc_graph_svg_top circle[group='"+group+"'], .cwc_graph_svg_top rect[group='"+group+"']").addClass("groupactive");
+
+});
+
+var cwc_graph_drag = false;
+
+
+
+$(document).on("mouseout", ".cwc_graph_svg_top circle[group]", function(e){
+
+
+	$(".cwc_graph_svg_top circle[group], .cwc_graph_svg_top rect[group]").removeClass("groupactive");
+
+});
+
+
+
 $(document).on("mousemove", ".cwc_graph_svg_top", function(e){
 
 
-
+	cwc_graph_drag = true;
 
 	if (cwc_graph_active == true && cwc_graph_index != null && cwc_graph_id != null && cwc_graph_angle == false) {
 

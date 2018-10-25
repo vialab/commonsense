@@ -105,3 +105,58 @@ div.module[module='db/asset'][meta='SCENE'] table th:nth-child(2), div.module[mo
 {
 	background-color:pink !important;
 }
+
+#cwc_asset_resolve
+{
+	display: none;
+}
+
+#cwc_asset_resolve_table tbody tr.interaction td
+{
+	text-align: center;
+}
+
+#cwc_asset_resolve_table tbody tr.interaction:last-child
+{
+	display:none;
+}
+
+#cwc_asset_resolve_placeholder
+{
+	padding-bottom: 100%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+/*
+#cwc_asset_resolve_placeholder #cwc_graph_svg_conceptual>*
+{
+	display:none;
+}
+*/
+
+#cwc_asset_resolve_asset_placeholder .modalhide
+{
+	display:none !important;
+}
+
+#cwc_asset_resolve_asset_placeholder #cwc_actor_container span
+{
+
+}
+
+#cwc_asset_resolve_asset_placeholder #cwc_asset_mode span
+{
+	display:none !important;
+}
+
+#cwc_asset_resolve_placeholder tspan
+{
+	display:none !important;
+}
+
+
+#cwc_asset_resolve_detected_table
+{
+	display:none;
+}

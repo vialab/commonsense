@@ -10,6 +10,12 @@ callback.textualFreetext = function(){
 
 	obj.meta = meta;
 
+	if (obj.meta.indexOf("GRNOTES") != -1) {
+
+		$("#textual-freetext-textarea").prop("disabled", true);
+
+	}
+
 	$.ajax({
 		url: "/modules/textual/freetext/load.php",
 		type: "GET",
@@ -42,6 +48,8 @@ $(document).on("change", "#textual-freetext-textarea", function(){
 $(document).on("click", "#textual-freetext-save", function(){
 
 	var obj = {};
+
+	$("#textual-freetext-textarea").removeClass("animated rubberBand");			
 
 	obj.text = $("#textual-freetext-textarea").val();
 	obj.session = session_id;
