@@ -810,6 +810,7 @@ $(document).on("click", "#cwc_asset_resolve", function(e){
 
 	})
 
+
 	// resolution_name = $.trim(resolution_name);
 	// var resolution_data = null;
 
@@ -838,14 +839,29 @@ $(document).on("click", "#cwc_asset_resolve", function(e){
 
 				$.each(resolution_data, function(i,o){
 
-					var actors = JSON.parse(o.ACTORS);
-					var edges = JSON.parse(o.EDGES);
-					var names = JSON.parse(o.NAMES);
+					var actors = [];
+					var edges = [];
+					var names = [];
 
-					console.log(o);
-					console.log(actors);
-					console.log(edges);
-					console.log(names);
+
+					if (o.ACTORS != "null") {
+
+						var actors = JSON.parse(o.ACTORS);
+
+					}
+
+					if (o.EDGES != "null") {
+
+						var edges = JSON.parse(o.EDGES);
+
+					}
+
+					if (o.NAMES != "null") {
+
+						var names = JSON.parse(o.NAMES);
+
+					}
+
 
 					var name = [];
 
