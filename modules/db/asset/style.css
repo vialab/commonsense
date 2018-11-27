@@ -49,7 +49,7 @@ div.module[module='db/asset'] .dropdown-menu
 	overflow-y: auto;	
 }
 
-#cwc_asset_add, #cwc_asset_new
+#cwc_asset_add, #cwc_asset_new, #cwc_asset_import
 {
 	display:none;
 }
@@ -69,7 +69,7 @@ div.module[module='db/asset'][meta='ALL'] div.card-body
 	/*display:none;*/
 }
 
-div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_add, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_new
+div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_add, div.module[module='db/asset'][meta='ALL'] div.card-body #cwc_asset_new, div.module[module='db/asset'][meta='SCENE'] div.card-body #cwc_asset_import
 {
 	display:inline-block;
 }

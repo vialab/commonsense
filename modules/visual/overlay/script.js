@@ -3154,3 +3154,75 @@ $(document).on("click", "button.visual-bbox-reset", function(){
 
 
 });
+
+
+$(document).on("click", ".visual-bbox-import", function(e){
+
+
+	var button = $(this);
+	var scene = parseInt(code.replace("LAYOUT","").replace("GRAPH",""));
+
+
+	function pad(n, width, z) {
+	  z = z || '0';
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}	
+
+	var scene = pad(scene, 3);
+
+
+	var name = $(this).closest("div.visual-bbox-bar").attr("data-name");
+	var db = $(this).closest("div.visual-bbox-bar").attr("data-db");
+	var value = $("#visual-video-timeline").val();
+	var meta = $("div[module='visual/overlay']").attr("meta");
+
+	if ($(this).closest("div.visual-bbox-bar").find("svg circle.active").length > 0) {
+
+		alert("Cannot overwrite existing keyframe.");
+		return false;
+
+	}
+
+	// alert("Importing "+meta+" from #"+scene+" into "+session_id+" for "+name+" ("+db+") in frame #"+value);
+
+
+	button.prop("disabled", true);
+
+	$.ajax({
+		url: "/modules/db/asset/import_json.php",
+		data: {
+			scene: scene,
+			session: session_id,
+			mode: "visual",
+			meta: meta,
+			frame: value,
+			name: name,
+			db: db
+		},
+		type: "POST",
+		success: function(data){
+
+			button.prop("disabled", false);
+
+			if (data.trim() == "FAIL") {
+
+				alert("No annotation detected.");
+
+			}
+
+			$.each(static, function(i,o){
+
+				o();
+
+			});
+
+			$("#visual-video-timeline").val(value).trigger("input");
+
+		}
+	})
+
+
+
+
+});

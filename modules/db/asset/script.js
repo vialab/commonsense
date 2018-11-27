@@ -1585,3 +1585,41 @@ $(document).on("click", "button#cwc_asset_resolve_save", function(e){
 
 
 });
+
+
+$(document).on("click", "button#cwc_asset_import", function(e){
+
+	var button = $(this);
+
+	var scene = parseInt(code.replace("LAYOUT","").replace("GRAPH",""));
+
+	function pad(n, width, z) {
+	  z = z || '0';
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}	
+
+	var scene = pad(scene, 3);
+
+	button.prop("disabled", true);
+
+	$.ajax({
+		url: "/modules/db/asset/import_json.php",
+		data: {
+			scene: scene,
+			session: session_id,
+			mode: "characters"
+		},
+		type: "POST",
+		success: function(data){
+
+
+			button.prop("disabled", false);
+
+		}
+	})
+
+
+
+
+});
