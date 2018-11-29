@@ -795,7 +795,9 @@ $(document).on("mouseup", ".cwc_graph_svg_top", function(e){
 
 
 
-$(document).on("dblclick", ".cwc_graph_svg_top circle[asset='Generic']", function(e){
+$(document).on("dblclick", ".module[module='db/graph']:not([meta='SCENE']) .cwc_graph_svg_top circle[asset='Generic']", function(e){
+
+
 
 
 	if ($("#cwc_asset_resolve_modal").hasClass("show")) {
@@ -837,11 +839,16 @@ $(document).on("click", "#cwc_graph_resolve", function(e){
 });
 
 
-$(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type][asset!='Generic']", function(e){
+$(document).on("dblclick", "#cwc_graph_svg_conceptual circle[type][asset!='Generic'], .module[module='db/graph'][meta='SCENE'] #cwc_graph_svg_conceptual circle[type][asset]", function(e){
 
 	$("#cwc_actor_list tr.swap").removeClass("swap");
 
-	$(".cwc_graph_svg_top circle[asset='Generic'], .cwc_graph_svg_top rect[asset='Generic']").removeClass("active");
+	if ($("div.module[module='db/graph']").attr("meta") != "SCENE") {
+
+		$(".cwc_graph_svg_top circle[asset='Generic'], .cwc_graph_svg_top rect[asset='Generic']").removeClass("active");
+
+	}
+
 	$("#cwc_graph_resolve").hide();
 
 	if ($("div.module[module='db/event'], div.module[module='db/relationship'], div.module[module='db/connection']").length == 0) {

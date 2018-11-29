@@ -6,7 +6,7 @@
 
     $name = $_POST["name"];
 
-    if (isset($_POST["name2"])) {
+    if (isset($_POST["name2"]) && $_POST["name2"] != "") {
 
         $name2 = $_POST["name2"];
 
@@ -15,6 +15,9 @@
         $name2 = "(".$_POST["name"].")";
 
     }
+
+
+
 
     $id = $_POST["id"];
 	$session = $_POST["session"];
@@ -61,7 +64,7 @@
                 $stmt->bind_param('isssss', $id, $name2, $session, $meta, $extid, $tag);
                 $stmt->execute();
 
-                $tag = NULL;
+                // $tag = NULL;
 
                 $meta = "BODY";
                 $stmt->bind_param('isssss', $id, $name2, $session, $meta, $extid, $tag);
@@ -136,6 +139,7 @@
         $rand2 = rand(20, 80);
         $rand3 = rand(20, 80);
         $rand4= rand(20, 80);
+
 
         $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION) VALUES (?, ?, $rand, $rand2, $rand3, $rand4, 0, 0, 0, 0, ?)");
         $stmt->bind_param('iss', $id, $name2, $session);

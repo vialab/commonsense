@@ -17,11 +17,14 @@ callback.cwcProp = function(){
 
 		$("#cwc_asset_mode a[data-type='5']").remove();
 
+
 		// $("#cwc_asset_clear").closest("div.card-body").hide();
 
 	}
 
 	if (meta == "SCENE") {
+
+		$("#cwc_asset_dropdown_menu").remove();
 
 		// $("#cwc_asset_mode a[data-type='1']").remove();
 
@@ -390,13 +393,27 @@ $(document).on("click", "a.cwc_asset_add", function(e){
 		var name = $(this).text();
 		var id = $(this).data("db");
 
+		var newName = null;
+
+		if ($("#cwc_asset_resolve_modal").hasClass("show")) {
+
+			var index = $("#cwc_graph_svg_conceptual circle:visible[asset='Generic']").attr("index");
+			var label = $("#cwc_graph_svg_conceptual text:visible[index='"+index+"'].label").text();
+
+			newName = label.replace(index+": ", "");
+
+
+
+		}
+
 		$.ajax({
 			url: "/modules/db/asset/add.php",
 			type: "POST",
 			data: {
 				id: id,
 				name: name,
-				session: session_id
+				session: session_id,
+				name2: newName
 			},		
 			success: function(data){
 
@@ -700,6 +717,7 @@ $(document).on("click", "button.cwc_graph_resolve_import", function(e){
 	var db = $(this).attr("db");
 
 
+
 	$.ajax({
 		url: "/modules/db/asset/import.php",
 		data: {
@@ -708,6 +726,7 @@ $(document).on("click", "button.cwc_graph_resolve_import", function(e){
 		},
 		type: "POST",
 		success: function(data){
+
 
 
 		}
@@ -1603,6 +1622,7 @@ $(document).on("click", "button#cwc_asset_import", function(e){
 
 	button.prop("disabled", true);
 
+
 	$.ajax({
 		url: "/modules/db/asset/import_json.php",
 		data: {
@@ -1615,6 +1635,7 @@ $(document).on("click", "button#cwc_asset_import", function(e){
 
 
 			button.prop("disabled", false);
+			button.hide();
 
 		}
 	})
