@@ -400,7 +400,7 @@ $(document).on("click", "a.cwc_asset_add", function(e){
 			var index = $("#cwc_graph_svg_conceptual circle:visible[asset='Generic']").attr("index");
 			var label = $("#cwc_graph_svg_conceptual text:visible[index='"+index+"'].label").text();
 
-			newName = label.replace(index+": ", "");
+			newName = label.replace(index+": ", "")+" as "+$(this).text();
 
 
 
@@ -1437,7 +1437,7 @@ $(document).on("click", "button#cwc_asset_resolve_save", function(e){
 
 		var item = {};
 
-		item.name = $("#cwc_actor_list tr[data-db='"+id+"']").attr("data-asset-name");
+		item.name = $("#cwc_actor_list tr[data-db='"+id+"']").find("td.name").text().trim();
 		item.asset = asset;
 		item.actor = id;
 

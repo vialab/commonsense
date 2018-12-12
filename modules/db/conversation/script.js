@@ -87,6 +87,16 @@ poll.cwcConversation = function(){
 
 }
 
+$(document).on("keyup", "#cwc_conversation_input", function(e){
+
+	if (e.which == 13) {
+
+		$("#cwc_conversation_send").click();
+
+	}
+
+});
+
 $(document).on("click", "#cwc_conversation_send", function(e){
 
 	e.preventDefault();

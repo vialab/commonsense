@@ -14,6 +14,14 @@ callback.visualOverlay = function(){
 
 
 
+	if ($("div.module[module='visual/overlay']").attr("meta") != "FACE") {
+
+		$(".visual-bbox-detect").remove();
+
+	}
+
+
+
 	var meta = $("div[module='visual/overlay']").attr("meta");
 
 	// if (meta == "MIT") {
@@ -1445,6 +1453,8 @@ $(document).on("click", ".visual-bbox-hide", function(){
 		var overlay_id = dot.attr("db");
 
 
+
+
 		$.ajax({
 			url: "/modules/visual/overlay/move.php",
 			type: "POST",
@@ -2394,6 +2404,10 @@ $(document).on("mouseup", "#visual-video-canvas", function(e){
 
 		var overlay = visual_overlay_rect_id;
 
+
+
+
+
 		$.ajax({
 			url: "/modules/visual/overlay/move.php",
 			type: "POST",
@@ -2431,6 +2445,8 @@ $(document).on("mouseup", "#visual-video-canvas", function(e){
 							o(obj);
 
 						});
+
+
 
 					}
 
@@ -3224,5 +3240,54 @@ $(document).on("click", ".visual-bbox-import", function(e){
 
 
 
+
+});
+
+
+$(document).on("click", ".visual-bbox-detect", function(e){
+
+	var response = confirm("Would you like to import additional detector output based on new FACE annotations?");
+
+	if (response == true) {
+
+
+		var button = $(this);
+		var scene = parseInt(code.replace("LAYOUT","").replace("GRAPH",""));
+		var db = $(this).closest("div.visual-bbox-bar").attr("data-db");
+		var length = parseInt($("#visual-video-timeline").attr("max"));
+
+
+
+		button.prop("disabled", true);
+
+		$.ajax({
+			url: "/modules/visual/overlay/align.php",
+			data: {
+				scene: scene,
+				session: session_id,
+				db: db,
+				length: length,
+			},
+			type: "POST",
+			success: function(data){
+
+				button.prop("disabled", false);
+
+				alert(data+" additional annotations created.");
+
+
+				$.each(static, function(i,o){
+
+					o();
+
+				});
+
+
+			}
+		})
+
+
+
+	}
 
 });

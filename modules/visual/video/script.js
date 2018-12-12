@@ -202,6 +202,15 @@ $(document).on("input", "#visual-video-timeline", function(){
 	pane.currentTime = time;
 
 	window.history.replaceState({}, null, "#"+frame);
+
+	$("#nav a").each(function(){
+
+		var array = $(this).attr("href").split("#");
+		var link = array[0]+"#"+frame;
+		$(this).attr("href", link);
+
+	});
+
 	$("#visual-video-frame").val(frame + "/" + $("#visual-video-timeline").attr("max"));
 
 	// animate.visualOverlay();
@@ -230,6 +239,14 @@ $(document).on("click", "#visual-video-pause", function(){
 	pane.pause();
 
 	window.history.replaceState({}, null, "#"+$("#visual-video-timeline").val());
+	
+	$("#nav a").each(function(){
+
+		var array = $(this).attr("href").split("#");
+		var link = array[0]+"#"+frame;
+		$(this).attr("href", link);
+
+	});
 	
 });
 

@@ -390,10 +390,87 @@
 			}
 
 
+
+
+
+
+
+			$resolution_name = array($name2);
+			$resolution_name = json_encode($resolution_name);
+			$resolution_name = str_replace("'", "\'", $resolution_name);
+
+			$query = "SELECT * FROM RESOLUTIONS WHERE NAMES = '$resolution_name' ORDER BY RESOLUTION_ID DESC LIMIT 1";
+			$result = $conn->query($query);
+
+			$output = array();
+
+		    while ($row = $result->fetch_object()){
+		        $output = $row;
+		    }
+
+		    if ($result->num_rows > 0) {
+
+
+				$group = uniqid();
+
+			    $stmt = $conn->prepare("UPDATE ACTORS SET `GROUP` = ? WHERE ACTOR_ID = ?");
+			    $stmt->bind_param('ss', $group, $main_id);
+			    $stmt->execute();
+
+			    $actors = json_decode($output->ACTORS);
+			    $edges = json_decode($output->EDGES);
+
+			    $actorResult = array();
+			    $edgeResult = array();
+
+			    var_dump($actors);
+			    var_dump($edges);
+
+			    foreach ($actors as $item) {
+
+				    $rand = rand(20, 80);
+				    $rand2 = rand(20, 80);
+				    $rand3 = rand(20, 80);
+				    $rand4 = rand(20, 80);
+
+				    $name = $item->name;
+				    $asset_id = $item->asset;
+
+				    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, `GROUP`) VALUES (?, ?, $rand, $rand2, $rand3, $rand4, 0, 0, 0, 0, ?, ?)");
+				    $stmt->bind_param('isss', $asset_id, $name, $session, $group);
+
+				    $stmt->execute();
+
+				    $actorResult[$item->actor] = $stmt->insert_id;
+
+			    }
+
+
+			    foreach ($edges as $i=>$item) {
+
+			    	$order = $i;
+
+			    	$type = (int)$item->type; 
+			    	$direction = (int)$item->direction; 
+
+					$actor0 = $actorResult[$item->actor0];
+					$actor1 = $actorResult[$item->actor1];
+
+					$query = "INSERT INTO INTERACTIONS (DESCRIPTION, `ORDER`, DIRECTION, TYPE, ACTOR_ID_0, ACTOR_ID_1) VALUES ('', $order, $direction, $type, $actor0, $actor1)";
+
+				    $stmt = $conn->prepare($query);
+				    $stmt->execute();
+
+
+
+
+			    }
+
+		    }
+
+
+
 		}
-
-
-
 
 
 

@@ -26,7 +26,7 @@
 
     while ($row = $result->fetch_object()){
 
-        if ($row->ASSET_NAME == "Generic" && $row->ACTOR_GROUP != null) {
+        if ($row->ASSET_NAME == "Generic" && $row->ACTOR_GROUP != null && $_GET["meta"] != "SCENE") {
 
             continue;
 
