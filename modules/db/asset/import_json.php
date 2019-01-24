@@ -159,8 +159,8 @@
 					foreach ($object->polygon as $dots) {
 
 						$dots->frame = ($item->_idx+1);
-						$dots->x = $dots->x / $width_alt2 * 100;
-						$dots->y = $dots->y / $height_alt2 * 100;
+						$dots->x = $dots->x / ($width_alt2 * 2.66) * 100;
+						$dots->y = $dots->y / ($height_alt2 * 2.66) * 100;
 
 						$mit[$object->object_name."-".$object->object_idx][($item->_idx+1)][] = $dots;
 
@@ -471,6 +471,193 @@
 
 
 		}
+
+
+
+		foreach ($mit as $name=>$list) {
+
+			$name2 = $name;
+
+			if (strpos($name, "person") === false) {
+
+				continue;
+
+			}
+
+
+			if (isset($position[$name])) {
+
+				$rand = $position[$name][$x];
+				$rand2 = $position[$name][$y];
+
+			} else {
+
+				$rand = rand(0,100);
+				$rand2 = rand(0,100);
+
+			}
+
+
+
+			$rand = rand(0,100);
+			$rand2 = rand(0,100);
+
+		    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (18389, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?, 'FIGURE', '".md5($name)."')");
+		    $stmt->bind_param('siis', $name2, $rand, $rand2, $session);
+		    $stmt->execute();
+
+		    $actor = $stmt->insert_id;
+
+
+		    foreach ($list as $frame=>$dots) {
+
+
+		    	$time = $frame;
+
+			    $stmt = $conn->prepare("INSERT INTO OVERLAYS (ACTOR_ID, `TIME`) VALUES ($actor, $time)");
+			    $stmt->execute();
+
+			    $db_id = $stmt->insert_id;
+
+			    $i = 0;
+
+		    	foreach ($dots as $dot) {
+
+
+			    	$time = $dot->frame;
+
+
+			    	$x0 = $dot->x;
+			    	$y0 = $dot->y;		    	
+
+			    	if ($x0 == 0 && $y0 == 0) {
+
+
+		    		} else {
+
+
+						if($i % 30 == 0) {
+
+						    $conn->query("INSERT INTO OVERLAY_POINTS (OVERLAY_ID, X, Y) VALUES ($db_id, $x0, $y0)");
+
+						}
+
+
+				    	$i++;
+
+
+			    	}
+
+
+
+
+		    	}
+
+
+		    }
+
+		}
+
+
+		foreach ($mit as $name=>$list) {
+
+			$name2 = $name;
+
+			if (strpos($name, "person") !== false) {
+
+				continue;
+
+			}
+
+
+			if (isset($position[$name])) {
+
+				$rand = $position[$name][$x];
+				$rand2 = $position[$name][$y];
+
+			} else {
+
+				$rand = rand(0,100);
+				$rand2 = rand(0,100);
+
+			}
+
+		    // $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (18389, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?, 'MIT-NEW', '".md5($name)."')");
+		    // $stmt->bind_param('siis', $name2, $rand, $rand2, $session);
+		    // $stmt->execute();
+
+		    // $actor = $stmt->insert_id;
+
+
+			// $name2 = "(".$name.")";
+
+
+
+
+			$rand = rand(0,100);
+			$rand2 = rand(0,100);
+
+		    $stmt = $conn->prepare("INSERT INTO ACTORS (ASSET_ID, NAME, GRAPH_X, GRAPH_Y, X, Y, Z, RX, RY, RZ, SESSION, META, EXT_ID) VALUES (18389, ?, 50, 50, ?, ?, 0, 0, 0, 0, ?, 'OUTLINE', '".md5($name)."')");
+		    $stmt->bind_param('siis', $name2, $rand, $rand2, $session);
+		    $stmt->execute();
+
+		    $actor = $stmt->insert_id;
+
+
+		    foreach ($list as $frame=>$dots) {
+
+
+		    	$time = $frame;
+
+			    $stmt = $conn->prepare("INSERT INTO OVERLAYS (ACTOR_ID, `TIME`) VALUES ($actor, $time)");
+			    $stmt->execute();
+
+			    $db_id = $stmt->insert_id;
+
+			    $i = 0;
+
+		    	foreach ($dots as $dot) {
+
+
+			    	$time = $dot->frame;
+
+			    	// echo $time;
+			    	// echo "\n";
+
+
+			    	//continue;
+
+			    	$x0 = $dot->x;
+			    	$y0 = $dot->y;		    	
+
+			    	if ($x0 == 0 && $y0 == 0) {
+
+
+		    		} else {
+
+
+						if($i % 30 == 0) {
+
+						    $conn->query("INSERT INTO OVERLAY_POINTS (OVERLAY_ID, X, Y) VALUES ($db_id, $x0, $y0)");
+
+						}
+
+
+				    	$i++;
+
+
+			    	}
+
+
+
+
+		    	}
+
+
+		    }
+
+		}	
+
 
 
 

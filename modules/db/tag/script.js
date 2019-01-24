@@ -261,3 +261,24 @@ function hsvToRgb(h, s, v) {
  
 	return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
+
+
+
+$(document).on("click", "#cwc_db_tag_coref", function(e){
+
+
+	alert("-");
+
+	$.ajax({
+		url: "http://localhost:5001/api/corefs",
+		type: "POST",
+		datatype: "json",
+		data: {
+			coref: $("#db-tag-tokens").text()
+		},
+		success: function(data){
+
+		}
+	});
+
+});
