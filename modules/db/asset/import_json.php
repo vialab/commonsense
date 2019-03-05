@@ -226,7 +226,7 @@
 
 					$actor = $face_id;
 
-					$time = $frame+1;
+					$time = $frame+0;
 				    $stmt = $conn->prepare("INSERT INTO OVERLAYS (ACTOR_ID, `TIME`) VALUES ($actor, $time)");
 				    $stmt->execute();
 
@@ -254,7 +254,7 @@
 
 					$actor = $body_id;
 
-					$time = $frame+1;
+					$time = $frame+0;
 				    $stmt = $conn->prepare("INSERT INTO OVERLAYS (ACTOR_ID, `TIME`) VALUES ($actor, $time)");
 				    $stmt->execute();
 
@@ -279,7 +279,7 @@
 
 					$actor = $pose_id;
 
-					$time = $frame+1;
+					$time = $frame+0;
 
 				    $stmt = $conn->prepare("INSERT INTO OVERLAYS (ACTOR_ID, `TIME`) VALUES ($actor, $time)");
 				    $stmt->execute();
@@ -536,7 +536,7 @@
 		    		} else {
 
 
-						if($i % 30 == 0) {
+						if($i % 10 == 0) {
 
 						    $conn->query("INSERT INTO OVERLAY_POINTS (OVERLAY_ID, X, Y) VALUES ($db_id, $x0, $y0)");
 
@@ -636,7 +636,7 @@
 		    		} else {
 
 
-						if($i % 30 == 0) {
+						if($i % 10 == 0) {
 
 						    $conn->query("INSERT INTO OVERLAY_POINTS (OVERLAY_ID, X, Y) VALUES ($db_id, $x0, $y0)");
 
