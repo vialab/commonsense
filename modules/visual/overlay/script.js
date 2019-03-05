@@ -3247,6 +3247,7 @@ $(document).on("click", ".visual-bbox-import", function(e){
 $(document).on("click", ".visual-bbox-detect", function(e){
 
 	var response = confirm("Would you like to import additional detector output based on new FACE annotations?");
+	response = true;
 
 	if (response == true) {
 

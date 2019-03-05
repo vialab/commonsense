@@ -65,16 +65,16 @@
 
     while ($row = $result->fetch_object()){
 
-	    for ($i = $row->TIME - 48; $i <= $row->TIME + 48; $i++) {
+	    // for ($i = $row->TIME - 48; $i <= $row->TIME + 48; $i++) {
 
-	    	if ($i >= 1 && $i <= $length) {
+	    	// if ($i >= 1 && $i <= $length) {
 
-				$frames[$i][] = $row;
+				$frames[$row->TIME][] = $row;
 
-	    	}
+	    	// }
 
 
-	    }
+	    // }
 
 
 

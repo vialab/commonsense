@@ -267,14 +267,16 @@ function hsvToRgb(h, s, v) {
 $(document).on("click", "#cwc_db_tag_coref", function(e){
 
 
-	alert("-");
+
+	var payload = {
+		coref: $("#db-tag-tokens").text().trim()
+	}
 
 	$.ajax({
-		url: "http://localhost:5001/api/corefs",
+		url: "/test.php",
 		type: "POST",
-		datatype: "json",
 		data: {
-			coref: $("#db-tag-tokens").text()
+			data: JSON.stringify(payload)
 		},
 		success: function(data){
 

@@ -1621,7 +1621,7 @@ $(document).on("click", "button#cwc_asset_import", function(e){
 	var scene = pad(scene, 3);
 
 	button.prop("disabled", true);
-
+	button.text("Loading ...");
 
 	$.ajax({
 		url: "/modules/db/asset/import_json.php",
