@@ -1,0 +1,52 @@
+<div class="" id="annotate_video">
+
+
+
+	<div class="row mb-2 align-items-center">
+
+		<div class="col-2">
+
+			<div class="input-group input-group-sm">
+				<input type="number" max="" value="1" min="1" class="form-control" id="annotate_video_current">
+				<input type="number" disabled class="form-control" id="annotate_video_max">
+			</div>
+
+		</div>
+
+		<div class="col-8 text-center">
+
+			<h6 class="m-0"><strong class="text-primary">Arrow keys</strong> for frame jump. <strong class="text-primary">P</strong> to toggle play / pause. <strong class="text-primary">[</strong> or <strong class="text-primary">]</strong> to go to start or end.</h6>
+
+		</div>
+
+		<div class="col-2 text-right">
+
+			<div class="btn-group btn-group-sm text-right" role="group" aria-label="Basic example">
+			  <button type="button" class="btn btn-primary" id="annotate_video_play"><i class="fa fa-play"></i></button>
+			  <button type="button" class="btn btn-secondary" id="annotate_video_pause"><i class="fa fa-pause"></i></button>
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<input type="range" id="annotate_video_slider" class="d-block w-100 mb-2" value="1" min="1" max="100">
+
+	<div class="position-relative">
+
+		<video id="annotate_video_player" class="d-block position-relative" preload="" onloadeddata="annotateVideoLoaded()" width="100%">
+			<source src="">
+		</video>
+
+		<svg class="position-absolute w-100 h-100" style="left:0; top:0" id="annotate_video_svg">
+			
+			<g id="annotate_video_svg_boxes"></g>
+			<g id="annotate_video_svg_dots"></g>
+
+		</svg>
+
+
+	</div>
+
+</div>

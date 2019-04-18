@@ -1,0 +1,56 @@
+
+.annotate_asset_bbox_svg, .annotate_asset_graph_svg
+{
+	transition: transform 0.25s ease;
+	transform-origin: center;
+	overflow: visible !important;
+}
+
+.annotate_asset_bbox_svg g, .annotate_asset_graph_svg g
+{
+	overflow: visible !important;
+}
+
+div.col-12 .annotate_asset_bbox_svg, div.col-12 .annotate_asset_graph_svg
+{
+	height:20px !important;
+}
+
+
+div.col-12 .annotate_asset_bbox_svg circle, div.col-12 .annotate_asset_graph_svg circle
+{
+	r:3px;
+}
+
+div.col-12 .annotate_asset_bbox_svg:hover, div.col-12 .annotate_asset_graph_svg:hover
+{
+	transform: scale(1.75) !important;
+}
+
+.annotate_asset_bbox_svg:hover, .annotate_asset_graph_svg:hover
+{
+	transform: scale(3.5);
+	z-index: 10000;
+}
+
+
+.annotate_asset_bbox_svg:hover circle, .annotate_asset_graph_svg:hover circle
+{
+}
+
+.annotate_asset_bbox_dot, .annotate_video_bbox_dot, .annotate_asset_graph_dot
+{
+	cursor: pointer;
+}
+
+
+.annotate_asset_graph_dot
+{
+	transform-origin: center;
+	cursor: pointer;
+}
+
+.annotate_asset_graph_view
+{
+    transform-origin: center;
+}

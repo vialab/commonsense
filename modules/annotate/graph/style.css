@@ -1,0 +1,25 @@
+#annotate_graph
+{
+	padding-bottom: 100%;
+}
+
+#annotate_graph circle
+{
+	cursor: pointer;	
+}
+
+
+body
+{
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+html.annotateGraphActive, body.annotateGraphActive
+{
+	overflow-y:hidden;
+}
+
+

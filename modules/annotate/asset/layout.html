@@ -1,0 +1,74 @@
+
+<div id="annotate_asset_list">
+
+
+	<div class="p-3 border border-muted template d-none mb-2">
+
+		<div class="row mb-2 align-items-center">
+
+			<div class="col-9">
+
+				<h6 class="m-0"><span name="ACTOR_ID">{ACTOR_ID}</span>: <span name="ACTOR_NAME">{ACTOR_NAME}</span> <small class="text-muted annotate_asset_shortcut">Press <strong class="text-primary">[<span name="ACTOR_KEY"></span>]</strong> to add bbox</small></h6>
+
+			</div>
+			<div class="col-3 text-right">
+
+				<i class="fa fa-fw fa-pencil-alt text-primary annotate_asset_rename"></i>
+				<i class="fa fa-fw fa-times text-danger annotate_asset_remove"></i>
+				<!-- <i class="fa fa-fw fa-eye-slash text-dark annotate_asset_bbox_hide"></i> -->
+
+			</div>
+
+		</div>
+
+		<div class="row mb-2 align-items-center">
+
+			<div class="col-6 annotate_asset_graph">
+
+				<h6 class="m-0 mb-1"><small>Position / Orientation</small></h6>
+
+				<svg class="position-relative d-block w-100 mb-0 border bg-white border-muted annotate_asset_graph_svg" style="height:10px; overflow:;">
+
+
+
+					<rect x="0%" height="100%" y="0" width="2px" fill="#ccc" class="annotate_asset_time_indicator"></rect>
+
+					<g></g>
+					
+				</svg>
+
+			</div>
+
+			<div class="col-6 annotate_asset_bbox">
+
+				<h6 class="m-0 mb-1"><small>Bounding Box</small></h6>
+
+				<svg class="position-relative d-block w-100 mb-0 border bg-white border-muted annotate_asset_bbox_svg" style="height:10px; overflow:;">
+
+
+					<rect x="0%" height="100%" y="0" width="2px" fill="#ccc" class="annotate_asset_time_indicator"></rect>			
+
+					<g></g>
+
+				</svg>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<button class="btn btn-primary btn-block mt-2" id="annotate_asset_add">
+	Add New Actor
+</button>
+
+<ul class="text-left m-0 mt-2 text-uppercase list-unstyled">
+	<small>
+		<li>1. <strong class="text-primary">J</strong> or <strong class="text-primary">K</strong> for global / local (hover on timeline) keyframe jump.</li>
+		<li>2. <strong class="text-primary">Del key</strong> for local (hover on timeline) keyframe removal.</li>
+		<li>3. <strong class="text-primary">C</strong> for local keyframe copy.</li>
+
+	</small>
+</ul>

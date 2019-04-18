@@ -1,0 +1,22 @@
+#annotate_video
+{
+}
+
+div[module='annotate/video']
+{
+}
+
+#annotate_video_svg
+{
+	background-color:rgba(255, 255, 255, 0.3);
+}
+
+.annotate_video_bbox_box
+{
+	opacity: 0.75;
+}
+
+.annotate_video_bbox_dot, .annotate_video_bbox_box
+{
+	cursor: pointer;
+}
