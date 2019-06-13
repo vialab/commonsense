@@ -40,4 +40,4 @@ The interface contains a simple "hello world" page that illustrates the placemen
 
 
 ## Contact Information
-Found any bugs? Please report any issues via Github's **Issues** feature. For private inquiry, please reach out to chris.kim@uoit.ca or chris.kim@sri.com (exclusive to SRI personnel).
+Found any bugs? Please report any issues via Github's **Issues** feature. For private inquiry, please reach out to chris.kim@uoit.ca.
